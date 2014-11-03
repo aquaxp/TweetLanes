@@ -1,17 +1,31 @@
-bin
-gen
-out
-proguard
-proguard_logs
+#built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Windows thumbnail db
+Thumbs.db
+
+# OSX files
 .DS_Store
-R.java
-.metadata/
-*.pyc
+
+# Eclipse project files
 .classpath
 .project
-.settings
-tests
-*.apk
-*/.idea
-android/client/.idea/workspace.xml
-android/clientbeta/.idea/workspace.xml
+
+# Android Studio
+.idea
+.gradle
+build/

@@ -1,0 +1,23 @@
+apply plugin: 'com.android.library'
+
+android {
+   compileSdkVersion 21
+   buildToolsVersion '21.1.0'
+   defaultConfig {
+      minSdkVersion 14
+      targetSdkVersion 17
+   }
+   buildTypes {
+      release {
+         runProguard false
+         proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+      }
+   }
+}
+
+dependencies {
+   // compile 'com.twitter:twitter-text:1.10.1' //TODO: enable this and remove SocialNetLib/src/main/java/com/twitter/*
+   compile 'com.turbomanage.basic-http-client:http-client-android:0.89'
+   compile 'org.twitter4j:twitter4j-core:3.0.6'
+   compile 'org.twitter4j:twitter4j-media-support:3.0.6'
+}
