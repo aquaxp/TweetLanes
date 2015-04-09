@@ -225,7 +225,7 @@ public class DirectMessageActivity extends BaseLaneActivity {
 
     public void setDeleting(boolean newDeletingValue) {
         mDeleting = newDeletingValue;
-        if (mDeleting == true && mHasDoneDelete == false) {
+        if (mDeleting && !mHasDoneDelete) {
             mHasDoneDelete = mDeleting;
         }
     }
@@ -240,7 +240,7 @@ public class DirectMessageActivity extends BaseLaneActivity {
             super(supportFragmentManager);
         }
 
-        public ArrayList<DirectMessageFeedFragment> directMessageFeedFragments = new ArrayList<DirectMessageFeedFragment>();
+        public ArrayList<DirectMessageFeedFragment> directMessageFeedFragments = new ArrayList<>();
 
         @Override
         public Fragment getItem(int position) {

@@ -40,7 +40,7 @@ public class EditClearText extends EditText {
             public boolean onTouch(View v, MotionEvent event) {
 
                 if (mListener != null) {
-                    mListener.onTouch(v, event);
+                    mListener.onTouch();
                 }
 
                 if (getCompoundDrawables()[2] == null) return false;
@@ -81,18 +81,18 @@ public class EditClearText extends EditText {
 	 */
     public interface EditClearTextListener {
 
-        public boolean canClearText();
+        boolean canClearText();
 
         /*
          * Triggered when the back button is pressedEditClearTextListener
          */
-        public boolean onBackButtonPressed();
+        boolean onBackButtonPressed();
 
         /*
          * Triggered when the view is touched. Use as a replacement for
          * setOnTouchListener(), which EditClearText overrides
          */
-        public void onTouch(View v, MotionEvent event);
+        void onTouch();
 
     }
 

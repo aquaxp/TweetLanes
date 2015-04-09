@@ -324,7 +324,7 @@ public class TweetSpotlightActivity extends BaseLaneActivity {
                     TwitterManager.get().getSetStatusesInstance().new FinishedCallback() {
 
                         @Override
-                        public void finished(boolean successful, TwitterStatuses statuses, Integer value) {
+                        public void finished(boolean successful) {
                             if (!successful) {
 
                                 showToast(getString(mStatus.mIsFavorited ? R.string.favorited_un_successfully : R.string
@@ -465,7 +465,7 @@ public class TweetSpotlightActivity extends BaseLaneActivity {
 
                     default:
                         result = PlaceholderPagerFragment.newInstance(position,
-                                laneDescriptor.getLaneTitle(), position);
+                                laneDescriptor.getLaneTitle());
                         break;
                 }
             } else {

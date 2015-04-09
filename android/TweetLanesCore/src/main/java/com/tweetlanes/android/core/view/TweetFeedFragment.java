@@ -116,8 +116,8 @@ public final class TweetFeedFragment extends BaseLaneFragment {
     private int mTimesFetchCalled;
     private TwitterFetchStatusesFinishedCallback mTweetDataLoadMoreCallback;
     private ViewSwitcher mViewSwitcher;
-    private final ArrayList<TweetFeedItemView> mSelectedItems = new ArrayList<TweetFeedItemView>();
-    private final ArrayList<Long> mConverstaionViewIds = new ArrayList<Long>();
+    private final ArrayList<TweetFeedItemView> mSelectedItems = new ArrayList<>();
+    private final ArrayList<Long> mConverstaionViewIds = new ArrayList<>();
     private MultipleTweetSelectionCallback mMultipleTweetSelectionCallback;
 
 
@@ -294,7 +294,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
         super.fetchNewestTweets();
 
         if (mNewestTweetId != null) {
-            fetchNewestTweets(mNewestTweetId.longValue(), null);
+            fetchNewestTweets(mNewestTweetId, null);
         }
     }
 
@@ -477,7 +477,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
 
             try {
                 visibleIndex = feed.getStatusIndex(mLastTwitterStatusIdSeen);
-            } catch (Exception e) {
+            } catch (Exception ignored) {
 
             }
 
@@ -519,7 +519,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
                 if (statuses.getStatusIndex(visibleStatusId) == null) {
                     Integer index = feed.getStatusIndex(visibleStatusId);
                     if (index != null) {
-                        statuses.add(feed.getStatus(index.intValue()));
+                        statuses.add(feed.getStatus(index));
                     }
                 }
             }
@@ -596,10 +596,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
                         }
                     }
                 }
-            } catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (OutOfMemoryError e) {
+            } catch (JSONException | OutOfMemoryError e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
@@ -1040,12 +1037,12 @@ public final class TweetFeedFragment extends BaseLaneFragment {
         }
 
         if (statusIndex != null) {
-            int newIndex = statusIndex.intValue() + 1;
+            int newIndex = statusIndex + 1;
 
             if (mNewStatuses == 1 && getStatusFeed() != null) {
                 TwitterStatus firstStatus = getStatusFeed().getStatus(0);
                 if (firstStatus != null && firstStatus.getAuthorScreenName().equals(getApp().getCurrentAccount().getScreenName())) {
-                    newIndex = statusIndex.intValue();
+                    newIndex = statusIndex;
                 }
             }
 
@@ -1196,7 +1193,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
             if (mResumeStatusId != null && getStatusFeed() != null) {
                 Integer statusIndex = getStatusFeed().getStatusIndex(mResumeStatusId);
                 if (statusIndex != null) {
-                    mTweetFeedListView.getRefreshableView().setSelectionFromTop(statusIndex.intValue() + 1, 0);
+                    mTweetFeedListView.getRefreshableView().setSelectionFromTop(statusIndex + 1, 0);
                 }
             }
         }
@@ -1521,7 +1518,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
                         TwitterManager.get().getSetStatusesInstance().new FinishedCallback() {
 
                             @Override
-                            public void finished(boolean successful, TwitterStatuses statuses, Integer value) {
+                            public void finished(boolean successful) {
                                 if (!successful) {
 
                                     TwitterStatuses cachedStatuses = getStatusFeed();
@@ -1582,7 +1579,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
                         TwitterManager.get().getSetStatusesInstance().new FinishedDeleteCallback(selected) {
 
                             @Override
-                            public void finished(boolean successful, TwitterStatuses statuses, Integer value) {
+                            public void finished(boolean successful) {
                                 if (!successful) {
                                     if (!mDetached) {
                                         showToast(getString(R.string.deleted_un_successfully));
@@ -1621,7 +1618,7 @@ public final class TweetFeedFragment extends BaseLaneFragment {
                     final TwitterStatuses selected = getSelectedStatuses();
                     if (selected != null && selected.getStatusCount() > 0) {
 
-                        ArrayList<Long> userIds = new ArrayList<Long>();
+                        ArrayList<Long> userIds = new ArrayList<>();
                         for (int i = 0; i < selected.getStatusCount(); i++) {
                             if (!doesTwitterStatusBelongToMe(selected.getStatus(i))) {
                                 userIds.add(selected.getStatus(i).mUserId);

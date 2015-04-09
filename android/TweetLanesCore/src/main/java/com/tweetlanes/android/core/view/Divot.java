@@ -12,30 +12,30 @@ public interface Divot {
     // Used for non-middle positions. For middle positions this distance is
     // basically
     // to the middle of edge.
-    static final float CORNER_OFFSET = 12F;
-    static final float WIDTH = 6F;
-    static final float HEIGHT = 16F;
+    float CORNER_OFFSET = 12F;
+    float WIDTH = 6F;
+    float HEIGHT = 16F;
 
     // Where to draw the divot. LEFT_UPPER, for example, means the upper edge
     // but to the
     // left. TOP_RIGHT means the right edge but to the top.
-    public static final int LEFT_UPPER = 1;
-    public static final int LEFT_MIDDLE = 2;
-    public static final int LEFT_LOWER = 3;
+    int LEFT_UPPER = 1;
+    int LEFT_MIDDLE = 2;
+    int LEFT_LOWER = 3;
 
-    public static final int RIGHT_UPPER = 4;
-    public static final int RIGHT_MIDDLE = 5;
-    public static final int RIGHT_LOWER = 6;
+    int RIGHT_UPPER = 4;
+    int RIGHT_MIDDLE = 5;
+    int RIGHT_LOWER = 6;
 
-    public static final int TOP_LEFT = 7;
-    public static final int TOP_MIDDLE = 8;
-    public static final int TOP_RIGHT = 9;
+    int TOP_LEFT = 7;
+    int TOP_MIDDLE = 8;
+    int TOP_RIGHT = 9;
 
-    public static final int BOTTOM_LEFT = 10;
-    public static final int BOTTOM_MIDDLE = 11;
-    public static final int BOTTOM_RIGHT = 12;
+    int BOTTOM_LEFT = 10;
+    int BOTTOM_MIDDLE = 11;
+    int BOTTOM_RIGHT = 12;
 
-    static final String[] sPositionChoices = new String[]{"", "left_upper",
+    String[] sPositionChoices = new String[]{"", "left_upper",
             "left_middle", "left_lower",
 
             "right_upper", "right_middle", "right_lower",
@@ -44,14 +44,14 @@ public interface Divot {
 
             "bottom_left", "bottom_middle", "bottom_right",};
 
-    public void setPosition(int position);
+    void setPosition(int position);
 
-    public int getPosition();
+    int getPosition();
 
-    public float getCloseOffset();
+    float getCloseOffset();
 
-    public float getFarOffset();
+    float getFarOffset();
 
-    public ImageView asImageView();
+    ImageView asImageView();
     // public void assignContactFromEmail(String emailAddress);
 }

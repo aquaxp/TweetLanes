@@ -22,7 +22,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +35,6 @@ import com.tweetlanes.android.core.widget.urlimageviewhelper.UrlImageViewHelper;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -82,8 +80,7 @@ public class ImageViewActivity extends FragmentActivity {
                 new UrlImageViewCallback() {
 
                     @Override
-                    public void onLoaded(ImageView imageView, Drawable loadedDrawable,
-                                         String url, boolean loadedFromCache) {
+                    public void onLoaded(Drawable loadedDrawable) {
                         ProgressBar loadingView = (ProgressBar) findViewById(R.id.imageViewLoading);
                         loadingView.setVisibility(View.GONE);
                         if (loadedDrawable == null) {
@@ -156,13 +153,7 @@ public class ImageViewActivity extends FragmentActivity {
                             copy(existingFile, f);
                             new SingleMediaScanner(this, f);
                             toastMessage = getString(R.string.image_save_success);
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (OutOfMemoryError e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
+                        } catch (OutOfMemoryError | Exception e) {
                             e.printStackTrace();
                         }
                     }

@@ -60,7 +60,7 @@ public class WhatsNewDialog extends ChangeLogDialog {
             //Update last shown version
             final SharedPreferences.Editor edit = prefs.edit();
             edit.putInt(WHATS_NEW_LAST_SHOWN, getAppVersionCode());
-            edit.commit();
+            edit.apply();
         }
         if(mOnDismissListener != null) {
             mOnDismissListener.onDismiss(null);

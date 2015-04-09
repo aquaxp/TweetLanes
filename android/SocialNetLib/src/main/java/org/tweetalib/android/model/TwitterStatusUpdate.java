@@ -54,9 +54,7 @@ public class TwitterStatusUpdate {
         if (mMediaFilePath != null) {
             try {
                 statusUpdate.setMedia(getMediaFile(mMediaFilePath));
-            } catch (IOException error) {
-                error.printStackTrace();
-            } catch (OutOfMemoryError error) {
+            } catch (IOException | OutOfMemoryError error) {
                 error.printStackTrace();
             }
         }
@@ -68,9 +66,7 @@ public class TwitterStatusUpdate {
         File mediaFile = null;
         try {
             mediaFile = getMediaFile(mMediaFilePath);
-        } catch (IOException error) {
-            error.printStackTrace();
-        } catch (OutOfMemoryError error) {
+        } catch (IOException | OutOfMemoryError error) {
             error.printStackTrace();
         }
 

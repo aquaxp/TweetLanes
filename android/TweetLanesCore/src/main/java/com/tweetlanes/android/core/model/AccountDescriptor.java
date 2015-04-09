@@ -96,7 +96,7 @@ public class AccountDescriptor {
                 mProfileImageUrl = object.getString(KEY_PROFILE_IMAGE_URL);
             }
             if (object.has(KEY_LISTS)) {
-                mLists = new Vector<List>();
+                mLists = new Vector<>();
                 String listsAsString = object.getString(KEY_LISTS);
                 JSONArray jsonArray = new JSONArray(listsAsString);
                 for (int i = 0; i < jsonArray.length(); i++) {
@@ -107,7 +107,7 @@ public class AccountDescriptor {
                 }
 
             }
-            ArrayList<String> displayedLanes = new ArrayList<String>();
+            ArrayList<String> displayedLanes = new ArrayList<>();
             if (object.has(KEY_DISPLAYED_LANES)) {
                 String displayedLanedAsString = object
                         .getString(KEY_DISPLAYED_LANES);
@@ -131,9 +131,9 @@ public class AccountDescriptor {
 
         mShouldRefreshLists = true;
 
-        mLaneDefinitions = new ArrayList<LaneDescriptor>();
+        mLaneDefinitions = new ArrayList<>();
         if (mLists == null) {
-            mLists = new Vector<List>();
+            mLists = new Vector<>();
         }
         configureLaneDefinitions(displayedLanes);
     }
@@ -256,7 +256,7 @@ public class AccountDescriptor {
         if (mLists != null) {
             mLists.clear();
         } else {
-            mLists = new Vector<List>();
+            mLists = new Vector<>();
         }
         boolean changed = false;
         if (twitterLists != null && twitterLists.getListCount() > 0) {
@@ -295,7 +295,7 @@ public class AccountDescriptor {
         }
 
         if (changed) {
-            ArrayList<String> activeLanes = new ArrayList<String>();
+            ArrayList<String> activeLanes = new ArrayList<>();
             for (LaneDescriptor lane : mLaneDefinitions) {
                 if (lane.getDisplay()) {
                     activeLanes.add(lane.getLaneTitle());
@@ -405,7 +405,7 @@ public class AccountDescriptor {
 	 */
     public int getInitialLaneIndex() {
         if (mInitialLaneIndex != null
-                && mInitialLaneIndex.intValue() < getDisplayedLaneDefinitionsSize()) {
+                && mInitialLaneIndex < getDisplayedLaneDefinitionsSize()) {
             return mInitialLaneIndex;
         }
 

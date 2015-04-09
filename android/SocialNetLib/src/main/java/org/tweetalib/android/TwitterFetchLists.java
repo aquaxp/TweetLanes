@@ -49,7 +49,7 @@ public class TwitterFetchLists {
 	 */
     public interface FetchListsWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
     }
 
     /*
@@ -57,7 +57,7 @@ public class TwitterFetchLists {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(boolean successful, TwitterLists lists);
+        void finished(boolean successful, TwitterLists lists);
 
     }
 
@@ -79,9 +79,9 @@ public class TwitterFetchLists {
 	 *
 	 */
     public TwitterFetchLists() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchListsCallbackHandle = 0;
-        mListsHashMap = new HashMap<Integer, TwitterLists>();
+        mListsHashMap = new HashMap<>();
 
     }
 

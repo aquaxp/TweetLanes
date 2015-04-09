@@ -4,10 +4,10 @@ import java.lang.ref.SoftReference;
 import java.util.Hashtable;
 
 class SoftReferenceHashTable<K, V> {
-    private final Hashtable<K, SoftReference<V>> mTable = new Hashtable<K, SoftReference<V>>();
+    private final Hashtable<K, SoftReference<V>> mTable = new Hashtable<>();
 
     public V put(K key, V value) {
-        SoftReference<V> old = mTable.put(key, new SoftReference<V>(value));
+        SoftReference<V> old = mTable.put(key, new SoftReference<>(value));
         if (old == null)
             return null;
         return old.get();

@@ -18,6 +18,7 @@ import org.tweetalib.android.model.TwitterStatuses;
 import org.tweetalib.android.model.TwitterUsers;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class ComposeTweetDefault {
@@ -92,7 +93,7 @@ public class ComposeTweetDefault {
         mStatus = defaultStatus;
         mInitialStatus = defaultStatus;
         mInitialStatusIsPlaceholder = false;
-        if (defaultStatus == "") {
+        if (Objects.equals(defaultStatus, "")) {
             mInReplyToStatusId = null;
         } else {
             mInReplyToStatusId = inReplyToStatusId;
@@ -199,7 +200,7 @@ public class ComposeTweetDefault {
     private static String getReplyToUserNamesAsString(String userScreenName,
                                                       TwitterStatuses inReplyToStatusList) {
         String replyingToUsers = "";
-        Set<String> screenNameSet = new HashSet<String>();
+        Set<String> screenNameSet = new HashSet<>();
 
         if (userScreenName != null) {
             screenNameSet.add(userScreenName.toLowerCase());

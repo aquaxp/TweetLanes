@@ -146,7 +146,7 @@ public class ProfileFragment extends BaseLaneFragment {
                             TextView followingTextView = (TextView) mProfileView
                                     .findViewById(R.id.followState);
                             if (mFollowsLoggedInUser != null
-                                    && mFollowsLoggedInUser.booleanValue()) {
+                                    && mFollowsLoggedInUser) {
                                 followingTextView.setText(R.string.follows_you);
                             } else {
                                 followingTextView.setText(null);
@@ -230,7 +230,7 @@ public class ProfileFragment extends BaseLaneFragment {
 
             fullNameTextView.setText(mUser.getName());
             if (mFollowsLoggedInUser != null
-                    && mFollowsLoggedInUser.booleanValue()) {
+                    && mFollowsLoggedInUser) {
                 followingTextView.setText(R.string.follows_you);
             } else {
                 followingTextView.setText(null);

@@ -469,7 +469,7 @@
     <string name="summary_freeforlife_preference_no">Не зарегистрирован</string>
 
     <string name="title_version_preference">Версия Tweet Lanes</string>
-    <string name="summary_version_preference"></string>
+    <string name="summary_version_preference"/>
 
     <string name="title_help_preference">Где получить помощь?</string>
     <string name="summary_help_preference">Отправьте нам твит или сообщение в App.net.\nНас (@TweetLanes) в обеих сетях.</string>
@@ -511,7 +511,7 @@
     </string>
 
     <string name="title_displayurl_preference">Показать URL</string>
-    <string name="summary_displayurl_preference">Показать полный адрес в твитов, а не отделан "..."
+    <string name="summary_displayurl_preference">Показать полный адрес в твитов, а не отделан "…"
     </string>
 
     <string name="settings_image_loading">Загрузка изображения</string>

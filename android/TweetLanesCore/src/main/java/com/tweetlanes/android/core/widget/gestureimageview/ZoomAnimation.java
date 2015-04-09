@@ -32,7 +32,6 @@ public class ZoomAnimation implements Animation {
     private float mYDiff;
     private float mScaleDiff;
 
-    private long mAnimationLengthMS = 200;
     private long mTotalTime = 0;
 
     private ZoomAnimationListener zoomAnimationListener;
@@ -84,6 +83,7 @@ public class ZoomAnimation implements Animation {
 
         mTotalTime += time;
 
+        long mAnimationLengthMS = 200;
         float ratio = (float) mTotalTime / (float) mAnimationLengthMS;
 
         if (ratio < 1) {

@@ -24,21 +24,21 @@ public class TwitterUsers {
      *
 	 */
     public TwitterUsers() {
-        mUsers = new ArrayList<TwitterUser>();
+        mUsers = new ArrayList<>();
     }
 
     /*
      *
 	 */
     public TwitterUsers(TwitterUsers another) {
-        mUsers = new ArrayList<TwitterUser>(another.mUsers);
+        mUsers = new ArrayList<>(another.mUsers);
     }
 
     /*
 	 * 
 	 */
     public TwitterUsers(TwitterUser another) {
-        mUsers = new ArrayList<TwitterUser>();
+        mUsers = new ArrayList<>();
         add(another);
     }
 
@@ -69,7 +69,7 @@ public class TwitterUsers {
     public void remove(TwitterUsers users) {
 
         if (mUsers != null) {
-            ArrayList<Integer> toRemoveList = new ArrayList<Integer>();
+            ArrayList<Integer> toRemoveList = new ArrayList<>();
 
             for (int existingIndex = 0; existingIndex < mUsers.size(); existingIndex++) {
                 TwitterUser user = mUsers.get(existingIndex);

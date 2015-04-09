@@ -307,7 +307,7 @@ public class TwitterStatus implements Comparable<TwitterStatus> {
             mUserName = object.getString(KEY_USER_NAME);
             if (object.has(KEY_USER_MENTIONS)) {
 
-                ArrayList<String> mentions = new ArrayList<String>();
+                ArrayList<String> mentions = new ArrayList<>();
 
                 String mentionsAsString = object.getString(KEY_USER_MENTIONS);
                 JSONArray jsonArray = new JSONArray(mentionsAsString);
@@ -701,7 +701,7 @@ public class TwitterStatus implements Comparable<TwitterStatus> {
             Pattern.compile("(?:^|\\s|[\\p{Punct}&&[^/]])(#[\\p{L}0-9-_]+)");
 
     public List<String> getHashtags() {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
 
         Matcher matcher = HASHTAG_PATTERN.matcher(mStatus);
 

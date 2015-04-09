@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class ContactContentUrlDownloader implements UrlDownloader {
     @Override
-    public void download(final Context context, final String url, final String filename, final UrlDownloaderCallback callback, final Runnable completion) {
+    public void download(final Context context, final String url, final UrlDownloaderCallback callback, final Runnable completion) {
         final AsyncTask<Void, Void, Void> downloader = new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(final Void... params) {

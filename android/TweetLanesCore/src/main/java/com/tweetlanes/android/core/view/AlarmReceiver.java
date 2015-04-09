@@ -73,7 +73,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
                     final SharedPreferences.Editor edit = preferences.edit();
                     edit.putString("mentions_" + contentHandle.getCurrentAccountKey(), statusArray.toString());
-                    edit.commit();
+                    edit.apply();
 
                     String noun = feed.getStatusCount() == 1 ? "mention" : "mentions";
 
@@ -128,7 +128,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
                     final SharedPreferences.Editor edit = preferences.edit();
                     edit.putString("dm_" + contentHandle.getCurrentAccountKey(), statusArray.toString());
-                    edit.commit();
+                    edit.apply();
 
                     String noun = received.size() == 1 ? "direct message" : "direct messages";
 
@@ -245,7 +245,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
     private static ArrayList<AccountDescriptor> getAccounts(Context context) {
-        final ArrayList<AccountDescriptor> accounts = new ArrayList<AccountDescriptor>();
+        final ArrayList<AccountDescriptor> accounts = new ArrayList<>();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String accountIndices = preferences.getString(SharedPreferencesConstants.ACCOUNT_INDICES, null);

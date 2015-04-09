@@ -40,7 +40,6 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
 
     private boolean mFades;
     private int mFadeDelay;
-    private int mFadeLength;
     private int mFadeBy;
 
     private ViewPager mViewPager;
@@ -132,8 +131,7 @@ public class UnderlinePageIndicator extends View implements PageIndicator {
     }
 
     void setFadeLength(int fadeLength) {
-        mFadeLength = fadeLength;
-        mFadeBy = 0xFF / (mFadeLength / FADE_FRAME_MS);
+        mFadeBy = 0xFF / (fadeLength / FADE_FRAME_MS);
     }
 
     void setSelectedColor(int selectedColor) {

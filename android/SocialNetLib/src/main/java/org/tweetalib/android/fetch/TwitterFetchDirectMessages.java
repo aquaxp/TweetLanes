@@ -64,18 +64,18 @@ public class TwitterFetchDirectMessages {
 	 */
     public interface FetchMessagesWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
 
-        public void addUser(User user);
+        void addUser(User user);
     }
 
     /*
      *
 	 */
     public TwitterFetchDirectMessages() {
-        mFinishedCallbackMap = new HashMap<Integer, TwitterFetchDirectMessagesFinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchMessagesCallbackHandle = 0;
-        mMessagesHashMap = new HashMap<String, TwitterDirectMessages>();
+        mMessagesHashMap = new HashMap<>();
     }
 
     /*

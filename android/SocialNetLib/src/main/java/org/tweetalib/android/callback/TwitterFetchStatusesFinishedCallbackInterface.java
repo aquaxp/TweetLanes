@@ -22,6 +22,6 @@ import org.tweetalib.android.model.TwitterStatuses;
 
 public interface TwitterFetchStatusesFinishedCallbackInterface {
 
-    public void finished(TwitterFetchResult result, TwitterStatuses feed, TwitterContentHandle contentHandle);
+    void finished(TwitterFetchResult result, TwitterStatuses feed, TwitterContentHandle contentHandle);
 
 }

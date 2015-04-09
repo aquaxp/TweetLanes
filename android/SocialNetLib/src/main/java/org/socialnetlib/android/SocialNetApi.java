@@ -528,7 +528,7 @@ public abstract class SocialNetApi {
 	 */
     public TwitterUsers getUsers(TwitterContentHandle contentHandle,
                                  TwitterPaging paging) {
-        return mFetchUsers.getUsers(contentHandle, paging);
+        return mFetchUsers.getUsers(contentHandle);
     }
 
     public TwitterUsers getUsers(TwitterContentHandle contentHandle,

@@ -18,7 +18,7 @@ import twitter4j.IDs;
 public class TwitterIds {
 
     public TwitterIds() {
-        mIds = new ArrayList<Long>();
+        mIds = new ArrayList<>();
 
     }
 

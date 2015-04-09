@@ -91,7 +91,7 @@ public class UserFeedFragment extends BaseLaneFragment {
     private TwitterUsers _mUsersFeed;
     private FinishedCallback mUserDataRefreshCallback;
     private ViewSwitcher mViewSwitcher;
-    private final ArrayList<TwitterUser> mSelectedItems = new ArrayList<TwitterUser>();
+    private final ArrayList<TwitterUser> mSelectedItems = new ArrayList<>();
 
     private Long mNewestUserId;
     private Long mRefreshingNewestUserId;
@@ -467,7 +467,7 @@ public class UserFeedFragment extends BaseLaneFragment {
                     TwitterUsers selected = getSelectedUsers();
                     if (selected != null && selected.getUserCount() > 0) {
 
-                        ArrayList<Long> userIds = new ArrayList<Long>();
+                        ArrayList<Long> userIds = new ArrayList<>();
                         for (int i = 0; i < selected.getUserCount(); i++) {
                             userIds.add(selected.getUser(0).getId());
                         }
@@ -640,9 +640,9 @@ public class UserFeedFragment extends BaseLaneFragment {
      */
     public interface UserFeedItemViewCallbacks {
 
-        public Activity getActivity();
+        Activity getActivity();
 
-        public LazyImageLoader getProfileImageLoader();
+        LazyImageLoader getProfileImageLoader();
     }
 
     /*
@@ -740,7 +740,7 @@ public class UserFeedFragment extends BaseLaneFragment {
 
             };
 
-            userFeedItemView.configure(user, position + 1, callbacks);
+            userFeedItemView.configure(user, callbacks);
             return userFeedItemView;
 
         }

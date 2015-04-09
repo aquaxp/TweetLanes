@@ -135,8 +135,7 @@ public class ChangeLogDialog {
         boolean releaseFound = false;
         final StringBuilder changelogBuilder = new StringBuilder();
         changelogBuilder.append("<html><head>").append(getStyle()).append("</head><body>");
-        final XmlResourceParser xml = resources.getXml(resourceId);
-        try {
+        try (XmlResourceParser xml = resources.getXml(resourceId)) {
             int eventType = xml.getEventType();
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 if ((eventType == XmlPullParser.START_TAG) && (xml.getName().equals("release"))) {
@@ -156,8 +155,6 @@ public class ChangeLogDialog {
         } catch (IOException e) {
             Log.e(TAG, e.getMessage(), e);
             return "";
-        } finally {
-            xml.close();
         }
         changelogBuilder.append("</body></html>");
 

@@ -46,10 +46,10 @@ public class ConnectionStatus {
      *
 	 */
     public interface Callbacks {
-        public boolean isOnline();
+        boolean isOnline();
 
-        public String getErrorMessageNoConnection();
+        String getErrorMessageNoConnection();
 
-        public void handleError(TwitterFetchResult fetchResult);
+        void handleError(TwitterFetchResult fetchResult);
     }
 }

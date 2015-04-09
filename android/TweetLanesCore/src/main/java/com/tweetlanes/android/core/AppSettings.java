@@ -176,12 +176,16 @@ public class AppSettings {
         String theme = mSharedPreferences.getString(
                 SettingsActivity.KEY_THEME_PREFERENCE, THEME_DEFAULT);
 
-        if (theme.equals(THEME_LIGHT)) {
-            setCurrentTheme(Theme.Holo_Light);
-        } else if (theme.equals(THEME_DARK)) {
-            setCurrentTheme(Theme.Holo_Dark);
-        } else {
-            setCurrentTheme(Theme.Holo_Light_DarkAction);
+        switch (theme) {
+            case THEME_LIGHT:
+                setCurrentTheme(Theme.Holo_Light);
+                break;
+            case THEME_DARK:
+                setCurrentTheme(Theme.Holo_Dark);
+                break;
+            default:
+                setCurrentTheme(Theme.Holo_Light_DarkAction);
+                break;
         }
 
         Boolean displayUrl =  mSharedPreferences.getBoolean(
@@ -302,24 +306,25 @@ public class AppSettings {
         String notificationTime = mSharedPreferences.getString(SettingsActivity.KEY_NOTIFICATION_TIME_PREFERENCE, NOTIFICATION_TIME_DEFAULT);
 
         //NOTE: This function returns time in Milliseconds.
-        if (notificationTime.equals(NOTIFICATION_TIME_2M)) {
-            return 120000L;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_3M)) {
-            return 180000L;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_5M)) {
-            return 300000L;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_15M)) {
-            return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_30M)) {
-            return AlarmManager.INTERVAL_HALF_HOUR;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_1H)) {
-            return AlarmManager.INTERVAL_HOUR;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_4H)) {
-            return 14400000L;
-        } else if (notificationTime.equals(NOTIFICATION_TIME_12H)) {
-            return AlarmManager.INTERVAL_HALF_DAY;
-        } else {
-            return 0L;
+        switch (notificationTime) {
+            case NOTIFICATION_TIME_2M:
+                return 120000L;
+            case NOTIFICATION_TIME_3M:
+                return 180000L;
+            case NOTIFICATION_TIME_5M:
+                return 300000L;
+            case NOTIFICATION_TIME_15M:
+                return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+            case NOTIFICATION_TIME_30M:
+                return AlarmManager.INTERVAL_HALF_HOUR;
+            case NOTIFICATION_TIME_1H:
+                return AlarmManager.INTERVAL_HOUR;
+            case NOTIFICATION_TIME_4H:
+                return 14400000L;
+            case NOTIFICATION_TIME_12H:
+                return AlarmManager.INTERVAL_HALF_DAY;
+            default:
+                return 0L;
         }
 
     }
@@ -388,24 +393,32 @@ public class AppSettings {
 
     void setDisplayTimeFormat(String displayTimeFormat) {
         if (displayTimeFormat != null) {
-            if (displayTimeFormat.equals(DISAPLY_TIME_RELATIVE)) {
-                mDisplayTimeFormat = DisplayTimeFormat.Relative;
-            } else if (displayTimeFormat.equals(DISAPLY_TIME_ABSOLUTE)) {
-                mDisplayTimeFormat = DisplayTimeFormat.Absolute;
-            } else if (displayTimeFormat.equals(DISAPLY_TIME_MIXED)) {
-                mDisplayTimeFormat = DisplayTimeFormat.Mixed;
+            switch (displayTimeFormat) {
+                case DISAPLY_TIME_RELATIVE:
+                    mDisplayTimeFormat = DisplayTimeFormat.Relative;
+                    break;
+                case DISAPLY_TIME_ABSOLUTE:
+                    mDisplayTimeFormat = DisplayTimeFormat.Absolute;
+                    break;
+                case DISAPLY_TIME_MIXED:
+                    mDisplayTimeFormat = DisplayTimeFormat.Mixed;
+                    break;
             }
         }
     }
 
     void setDisplayNameFormat(String displayNameFormat) {
         if (displayNameFormat != null) {
-            if (displayNameFormat.equals(DISAPLY_NAME_BOTH)) {
-                mDisplayNameFormat = DisplayNameFormat.Both;
-            } else if (displayNameFormat.equals(DISAPLY_NAME_NAME)) {
-                mDisplayNameFormat = DisplayNameFormat.Name;
-            } else if (displayNameFormat.equals(DISAPLY_NAME_HANDLE)) {
-                mDisplayNameFormat = DisplayNameFormat.Handle;
+            switch (displayNameFormat) {
+                case DISAPLY_NAME_BOTH:
+                    mDisplayNameFormat = DisplayNameFormat.Both;
+                    break;
+                case DISAPLY_NAME_NAME:
+                    mDisplayNameFormat = DisplayNameFormat.Name;
+                    break;
+                case DISAPLY_NAME_HANDLE:
+                    mDisplayNameFormat = DisplayNameFormat.Handle;
+                    break;
             }
         }
     }
@@ -415,22 +428,31 @@ public class AppSettings {
 	 */
     void setCurrentStatusSize(String statusSize) {
         if (statusSize != null) {
-            if (statusSize.equals(STATUS_SIZE_EXTRA_SMALL)) {
-                mStatusSize = StatusSize.ExtraSmall;
-            } else if (statusSize.equals(STATUS_SIZE_SMALL)) {
-                mStatusSize = StatusSize.Small;
-            } else if (statusSize.equals(STATUS_SIZE_MEDIUM)) {
-                mStatusSize = StatusSize.Medium;
-            } else if (statusSize.equals(STATUS_SIZE_LARGE)) {
-                mStatusSize = StatusSize.Large;
-            } else if (statusSize.equals(STATUS_SIZE_EXTRA_LARGE)) {
-                mStatusSize = StatusSize.ExtraLarge;
-            } else if (statusSize.equals(STATUS_SIZE_EXTRA_EXTRA_LARGE)) {
-                mStatusSize = StatusSize.ExtraExtraLarge;
-            } else if (statusSize.equals(STATUS_SIZE_SUPERSIZE)) {
-                mStatusSize = StatusSize.Supersize;
-            } else {
-                mStatusSize = StatusSize.Medium;
+            switch (statusSize) {
+                case STATUS_SIZE_EXTRA_SMALL:
+                    mStatusSize = StatusSize.ExtraSmall;
+                    break;
+                case STATUS_SIZE_SMALL:
+                    mStatusSize = StatusSize.Small;
+                    break;
+                case STATUS_SIZE_MEDIUM:
+                    mStatusSize = StatusSize.Medium;
+                    break;
+                case STATUS_SIZE_LARGE:
+                    mStatusSize = StatusSize.Large;
+                    break;
+                case STATUS_SIZE_EXTRA_LARGE:
+                    mStatusSize = StatusSize.ExtraLarge;
+                    break;
+                case STATUS_SIZE_EXTRA_EXTRA_LARGE:
+                    mStatusSize = StatusSize.ExtraExtraLarge;
+                    break;
+                case STATUS_SIZE_SUPERSIZE:
+                    mStatusSize = StatusSize.Supersize;
+                    break;
+                default:
+                    mStatusSize = StatusSize.Medium;
+                    break;
             }
 
         }
@@ -456,28 +478,38 @@ public class AppSettings {
 	 */
     void setCurrentProfileImageSize(String profileImageSize) {
         if (profileImageSize != null) {
-            if (profileImageSize.equals(PROFILE_IMAGE_SIZE_SMALL)) {
-                mProfileImageSize = ProfileImageSize.Small;
-            } else if (profileImageSize.equals(PROFILE_IMAGE_SIZE_MEDIUM)) {
-                mProfileImageSize = ProfileImageSize.Medium;
-            } else if (profileImageSize.equals(PROFILE_IMAGE_SIZE_LARGE)) {
-                mProfileImageSize = ProfileImageSize.Large;
-            } else {
-                mProfileImageSize = ProfileImageSize.Medium;
+            switch (profileImageSize) {
+                case PROFILE_IMAGE_SIZE_SMALL:
+                    mProfileImageSize = ProfileImageSize.Small;
+                    break;
+                case PROFILE_IMAGE_SIZE_MEDIUM:
+                    mProfileImageSize = ProfileImageSize.Medium;
+                    break;
+                case PROFILE_IMAGE_SIZE_LARGE:
+                    mProfileImageSize = ProfileImageSize.Large;
+                    break;
+                default:
+                    mProfileImageSize = ProfileImageSize.Medium;
+                    break;
             }
         }
     }
 
     void setCurrentMediaImageSize(String currentMediaImageSize) {
         if (currentMediaImageSize != null) {
-            if (currentMediaImageSize.equals(MEDIA_IMAGE_SIZE_SMALL)) {
-                mMediaImageSize = MediaImageSize.Small;
-            } else if (currentMediaImageSize.equals(MEDIA_IMAGE_SIZE_LARGE)) {
-                mMediaImageSize = MediaImageSize.Large;
-            } else if (currentMediaImageSize.equals(MEDIA_IMAGE_SIZE_OFF)) {
-                mMediaImageSize = MediaImageSize.Off;
-            } else {
-                mMediaImageSize = MediaImageSize.Small;
+            switch (currentMediaImageSize) {
+                case MEDIA_IMAGE_SIZE_SMALL:
+                    mMediaImageSize = MediaImageSize.Small;
+                    break;
+                case MEDIA_IMAGE_SIZE_LARGE:
+                    mMediaImageSize = MediaImageSize.Large;
+                    break;
+                case MEDIA_IMAGE_SIZE_OFF:
+                    mMediaImageSize = MediaImageSize.Off;
+                    break;
+                default:
+                    mMediaImageSize = MediaImageSize.Small;
+                    break;
             }
         }
     }
@@ -497,14 +529,19 @@ public class AppSettings {
 	 *
 	 */
     void setCurrentQuoteType(String quoteType) {
-        if (quoteType.equals(QUOTE_TYPE_STANDARD)) {
-            mQuoteType = QuoteType.Standard;
-        } else if (quoteType.equals(QUOTE_TYPE_RT)) {
-            mQuoteType = QuoteType.RT;
-        } else if (quoteType.equals(QUOTE_TYPE_VIA)) {
-            mQuoteType = QuoteType.Via;
-        } else {
-            mQuoteType = QuoteType.Standard;
+        switch (quoteType) {
+            case QUOTE_TYPE_STANDARD:
+                mQuoteType = QuoteType.Standard;
+                break;
+            case QUOTE_TYPE_RT:
+                mQuoteType = QuoteType.RT;
+                break;
+            case QUOTE_TYPE_VIA:
+                mQuoteType = QuoteType.Via;
+                break;
+            default:
+                mQuoteType = QuoteType.Standard;
+                break;
         }
     }
 

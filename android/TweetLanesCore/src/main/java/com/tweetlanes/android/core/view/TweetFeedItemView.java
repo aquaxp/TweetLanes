@@ -71,21 +71,21 @@ public class TweetFeedItemView extends LinearLayout {
      */
     public interface Callbacks {
 
-        public boolean onSingleTapConfirmed(View view, int position);
+        boolean onSingleTapConfirmed(View view, int position);
 
-        public void onLongPress(View view, int position);
+        void onLongPress(View view, int position);
 
-        public void onUrlClicked(TwitterStatus status);
+        void onUrlClicked(TwitterStatus status);
 
-        public Activity getActivity();
+        Activity getActivity();
 
-        public LayoutInflater getLayoutInflater();
+        LayoutInflater getLayoutInflater();
 
-        public void onConversationViewToggle(long statusId, boolean show);
+        void onConversationViewToggle(long statusId, boolean show);
 
-        public LazyImageLoader getProfileImageLoader();
+        LazyImageLoader getProfileImageLoader();
 
-        public LazyImageLoader getPreviewImageLoader();
+        LazyImageLoader getPreviewImageLoader();
     }
 
     /*

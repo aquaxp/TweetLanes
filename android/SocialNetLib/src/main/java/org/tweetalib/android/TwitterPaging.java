@@ -73,7 +73,7 @@ public class TwitterPaging {
             // a hack...
             // TODO: Fix me
             if (mMaxId < 0) {
-                Log.d("ERROR", "mMaxId is " + mMaxId.longValue()
+                Log.d("ERROR", "mMaxId is " + mMaxId
                         + ", must be >= 0");
                 mMaxId = (long) 0;
             }
@@ -81,7 +81,7 @@ public class TwitterPaging {
         if (sinceId != null) {
             mSinceId = sinceId;
             if (mSinceId < 0) {
-                Log.d("ERROR", "mSinceId is " + mSinceId.longValue()
+                Log.d("ERROR", "mSinceId is " + mSinceId
                         + ", must be >= 0");
                 mSinceId = (long) 0;
             }
@@ -102,18 +102,18 @@ public class TwitterPaging {
             }
         } else {
             if (mMaxId != null) {
-                if (mMaxId.longValue() >= 0) {
+                if (mMaxId >= 0) {
                     result.setMaxId(mMaxId);
                 } else {
-                    Log.d("ERROR", "mMaxId is " + mMaxId.longValue()
+                    Log.d("ERROR", "mMaxId is " + mMaxId
                             + ", must be >= 0");
                 }
             }
             if (mSinceId != null) {
-                if (mSinceId.longValue() >= 0) {
+                if (mSinceId >= 0) {
                     result.setSinceId(mSinceId);
                 } else {
-                    Log.d("ERROR", "mSinceId is " + mSinceId.longValue()
+                    Log.d("ERROR", "mSinceId is " + mSinceId
                             + ", must be >= 0");
                 }
             }
@@ -139,12 +139,12 @@ public class TwitterPaging {
             }
         } else {
             if (mMaxId != null) {
-                if (mMaxId.longValue() >= 0) {
+                if (mMaxId >= 0) {
                     result.setMaxId(mMaxId);
                 }
             }
             if (mSinceId != null) {
-                if (mSinceId.longValue() >= 0) {
+                if (mSinceId >= 0) {
                     result.setSinceId(mSinceId);
                 }
             }

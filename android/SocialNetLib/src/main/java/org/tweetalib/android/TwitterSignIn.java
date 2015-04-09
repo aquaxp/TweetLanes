@@ -42,14 +42,14 @@ public class TwitterSignIn {
 	 */
     public interface SignInWorkerCallbacks {
 
-        public SocialNetConstant.Type getType();
+        SocialNetConstant.Type getType();
 
-        public String getConsumerKey();
+        String getConsumerKey();
 
-        public String getConsumerSecret();
+        String getConsumerSecret();
 
-        public TwitterUser verifyCredentials(String accessToken,
-                                             String accessTokenSecret);
+        TwitterUser verifyCredentials(String accessToken,
+                                      String accessTokenSecret);
     }
 
     /*
@@ -65,8 +65,8 @@ public class TwitterSignIn {
 	 */
     public interface GetAuthUrlCallbackInterface {
 
-        public void finished(boolean successful, String url,
-                             RequestToken requestToken);
+        void finished(String url,
+                      RequestToken requestToken);
 
     }
 
@@ -90,8 +90,8 @@ public class TwitterSignIn {
 	 */
     public interface GetOAuthAccessTokenCallbackInterface {
 
-        public void finished(boolean successful, TwitterUser user,
-                             String accessToken, String accessTokenSecret);
+        void finished(boolean successful, TwitterUser user,
+                      String accessToken, String accessTokenSecret);
 
     }
 
@@ -118,11 +118,11 @@ public class TwitterSignIn {
 	 *
 	 */
     public TwitterSignIn() {
-        mGetAuthUrlCallbackMap = new HashMap<Integer, GetAuthUrlCallback>();
+        mGetAuthUrlCallbackMap = new HashMap<>();
         mGetAuthUrlCallbackHandle = 0;
 
         mGetOAuthAccessTokenCallbackHandle = 0;
-        mGetOAuthAccessTokenCallbackMap = new HashMap<Integer, GetOAuthAccessTokenCallback>();
+        mGetOAuthAccessTokenCallbackMap = new HashMap<>();
     }
 
     /*
@@ -258,7 +258,7 @@ public class TwitterSignIn {
 
             GetAuthUrlCallback callback = getAuthUrlCallback(output.mCallbackHandle);
             if (callback != null) {
-                callback.finished(true, output.mUrl, output.mRequestToken);
+                callback.finished(output.mUrl, output.mRequestToken);
                 removeAuthUrlCallback(callback);
             }
 
@@ -342,9 +342,7 @@ public class TwitterSignIn {
 
                 return new FetchOAuthAccessTokenTaskOutput(user, accessToken,
                         accessTokenSecret, input.mCallbackHandle);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            } catch (TwitterException e) {
+            } catch (NullPointerException | TwitterException e) {
                 e.printStackTrace();
             }
 

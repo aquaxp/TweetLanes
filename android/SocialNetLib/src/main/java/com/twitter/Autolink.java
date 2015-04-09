@@ -15,12 +15,12 @@ import twitter4j.URLEntity;
  */
 public class Autolink {
 
-    public static interface LinkAttributeModifier {
-        public void modify(Entity entity, Map<String, String> attributes);
+    public interface LinkAttributeModifier {
+        void modify(Entity entity, Map<String, String> attributes);
     }
 
-    public static interface LinkTextModifier {
-        public CharSequence modify(Entity entity, CharSequence text);
+    public interface LinkTextModifier {
+        CharSequence modify(Entity entity, CharSequence text);
     }
 
     private final String usernameUrlBase;
@@ -130,16 +130,16 @@ public class Autolink {
                 entity.getStart() + 1);
         CharSequence hashtag = entity.getValue();
 
-        Map<String, String> attrs = new LinkedHashMap<String, String>();
+        Map<String, String> attrs = new LinkedHashMap<>();
         attrs.put("href", hashtagUrlBase + "#" + hashtag);
 
         linkToTextWithSymbol(entity, hashChar, hashtag, attrs, builder);
     }
 
-    void linkToCashtag(Entity entity, String text, StringBuilder builder) {
+    void linkToCashtag(Entity entity, StringBuilder builder) {
         CharSequence cashtag = entity.getValue();
 
-        Map<String, String> attrs = new LinkedHashMap<String, String>();
+        Map<String, String> attrs = new LinkedHashMap<>();
         attrs.put("href", cashtagUrlBase + cashtag);
 
         linkToTextWithSymbol(entity, "$", cashtag, attrs, builder);
@@ -152,7 +152,7 @@ public class Autolink {
         CharSequence atChar = text.subSequence(entity.getStart(),
                 entity.getStart() + 1);
 
-        Map<String, String> attrs = new LinkedHashMap<String, String>();
+        Map<String, String> attrs = new LinkedHashMap<>();
         if (entity.listSlug != null) {
             mention += entity.listSlug;
 
@@ -165,7 +165,7 @@ public class Autolink {
         linkToTextWithSymbol(entity, atChar, mention, attrs, builder);
     }
 
-    void linkToURL(Entity entity, String text, StringBuilder builder,
+    void linkToURL(Entity entity, StringBuilder builder,
                    URLEntity urlEntity, boolean showFullUrl) {
         CharSequence url = entity.getValue();
         String linkText = escapeHTML(url).toString();
@@ -182,7 +182,7 @@ public class Autolink {
         //Then remove "www."
         linkText = linkText.replaceAll("^https?://", "").replaceAll("^www.", "");
 
-        Map<String, String> attrs = new LinkedHashMap<String, String>();
+        Map<String, String> attrs = new LinkedHashMap<>();
 
         if (urlEntity != null && urlEntity.getExpandedURL() != null) {
             attrs.put("href", urlEntity.getExpandedURL());
@@ -225,7 +225,7 @@ public class Autolink {
                         }
                     }
 
-                    linkToURL(entity, text, builder, urlEntity, showFullUrl);
+                    linkToURL(entity, builder, urlEntity, showFullUrl);
                     break;
                 case HASHTAG:
                     linkToHashtag(entity, text, builder);
@@ -234,7 +234,7 @@ public class Autolink {
                     linkToMentionAndList(entity, text, builder);
                     break;
                 case CASHTAG:
-                    linkToCashtag(entity, text, builder);
+                    linkToCashtag(entity, builder);
                     break;
             }
             beginIndex = entity.end;

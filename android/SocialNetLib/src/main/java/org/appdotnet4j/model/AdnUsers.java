@@ -22,7 +22,7 @@ public class AdnUsers {
     public ArrayList<AdnUser> mUsers;
 
     public AdnUsers(JSONArray jsonArray) {
-        mUsers = new ArrayList<AdnUser>();
+        mUsers = new ArrayList<>();
 
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -41,7 +41,7 @@ public class AdnUsers {
     }
 
     public AdnUsers(String jsonAsString) {
-        mUsers = new ArrayList<AdnUser>();
+        mUsers = new ArrayList<>();
 
         try {
             JSONArray jsonArray = new JSONObject(jsonAsString)

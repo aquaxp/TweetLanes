@@ -52,8 +52,6 @@ public class TwitterMediaEntity {
     public static TwitterMediaEntity createFromString(String jsonString) {
         try {
             return new TwitterMediaEntity(jsonString);
-        } catch (JSONException e) {
-            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -175,7 +173,7 @@ public class TwitterMediaEntity {
     private static String getInstagramMediaUrl(String url) {
 
         String lowerCaseUrl = url.toLowerCase();
-        if (lowerCaseUrl.indexOf("://instagr.am/p/") > -1) {
+        if (lowerCaseUrl.contains("://instagr.am/p/")) {
             String instagramMatch = "://instagr.am/p/";
             int startIndex = lowerCaseUrl.indexOf(instagramMatch);
             if (startIndex > -1) {
@@ -187,7 +185,7 @@ public class TwitterMediaEntity {
                 }
             }
         }
-        if (lowerCaseUrl.indexOf("://instagram.com/p/") > -1) {
+        if (lowerCaseUrl.contains("://instagram.com/p/")) {
             String instagramMatch = "://instagram.com/p/";
             int startIndex = lowerCaseUrl.indexOf(instagramMatch);
             if (startIndex > -1) {
@@ -224,11 +222,11 @@ public class TwitterMediaEntity {
     private static String getLockerzMediaUrl(String url) {
 
         String lowerCaseUrl = url.toLowerCase();
-        if (lowerCaseUrl.indexOf("://lockerz.com/") > -1) {
+        if (lowerCaseUrl.contains("://lockerz.com/")) {
             return "http://api.plixi.com/api/tpapi.svc/imagefromurl?url=" + url;
         }
 
-        if (lowerCaseUrl.indexOf("://plixi.com/") > -1) {
+        if (lowerCaseUrl.contains("://plixi.com/")) {
             return "http://api.plixi.com/api/tpapi.svc/imagefromurl?url=" + url;
         }
 
@@ -258,7 +256,7 @@ public class TwitterMediaEntity {
     private static String getYfrogMediaUrl(String url) {
 
         String lowerCaseUrl = url.toLowerCase();
-        if (lowerCaseUrl.indexOf("://yfrog.com/") > -1) {
+        if (lowerCaseUrl.contains("://yfrog.com/")) {
             return url;
         }
 
@@ -271,7 +269,7 @@ public class TwitterMediaEntity {
     private static String getYouTubeUrl(String url) {
 
         String lowerCaseUrl = url.toLowerCase();
-        if (lowerCaseUrl.indexOf("youtube.com/watch?") > -1) {
+        if (lowerCaseUrl.contains("youtube.com/watch?")) {
             Uri uri = Uri.parse(url);
             String videoId = uri.getQueryParameter("v");
             if (videoId != null) {

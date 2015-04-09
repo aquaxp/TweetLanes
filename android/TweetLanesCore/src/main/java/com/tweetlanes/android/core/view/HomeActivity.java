@@ -71,6 +71,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class HomeActivity extends BaseLaneActivity {
 
@@ -251,7 +252,7 @@ public class HomeActivity extends BaseLaneActivity {
         if(extras != null)
         {
             String type = intent.getType();
-            if (intent.getAction() == Intent.ACTION_SEND && type != null) {
+            if (Objects.equals(intent.getAction(), Intent.ACTION_SEND) && type != null) {
 
                 if (type.equals("text/plain") && extras.containsKey(Intent.EXTRA_TEXT)) {
 
@@ -729,7 +730,7 @@ public class HomeActivity extends BaseLaneActivity {
 
                     default:
                         result = PlaceholderPagerFragment.newInstance(position,
-                                laneDescriptor.getLaneTitle(), position);
+                                laneDescriptor.getLaneTitle());
                         break;
                 }
             }
@@ -775,7 +776,7 @@ public class HomeActivity extends BaseLaneActivity {
 
         public AccountAdapter(Context context, List<AccountDescriptor> data) {
             mContext = context;
-            mData = new ArrayList<AccountData>();
+            mData = new ArrayList<>();
 
             mShowImages = data != null && data.size() >= 3;
 

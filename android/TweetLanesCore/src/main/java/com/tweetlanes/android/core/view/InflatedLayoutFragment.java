@@ -31,7 +31,7 @@ public class InflatedLayoutFragment extends Fragment {
 	 */
     public interface Callback {
 
-        public void onCreateView(View view);
+        void onCreateView(View view);
     }
 
     /*

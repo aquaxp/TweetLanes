@@ -53,9 +53,9 @@ public class TwitterFetchUser {
 	 */
     public interface FetchUserWorkerCallbacks {
 
-        public AppdotnetApi getAppdotnetApi();
+        AppdotnetApi getAppdotnetApi();
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
     }
 
     /*
@@ -63,7 +63,7 @@ public class TwitterFetchUser {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(TwitterFetchResult result, TwitterUser user);
+        void finished(TwitterFetchResult result, TwitterUser user);
 
     }
 
@@ -85,10 +85,10 @@ public class TwitterFetchUser {
 	 *
 	 */
     public TwitterFetchUser() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchUserCallbackHandle = 0;
-        mUserIdHashMap = new HashMap<Long, TwitterUser>();
-        mUserScreenNameHashMap = new HashMap<String, TwitterUser>();
+        mUserIdHashMap = new HashMap<>();
+        mUserScreenNameHashMap = new HashMap<>();
     }
 
     /*
@@ -143,7 +143,7 @@ public class TwitterFetchUser {
     }
 
     public void setUser(User user, boolean forceUpdate) {
-        Long userId = Long.valueOf(user.getId());
+        Long userId = user.getId();
         TwitterUser twitterUser = new TwitterUser(user);
         if (forceUpdate || !mUserIdHashMap.containsKey(userId)) {
             mUserIdHashMap.put(userId, twitterUser);
@@ -156,7 +156,7 @@ public class TwitterFetchUser {
     }
 
     public void setUser(AdnUser user, boolean forceUpdate) {
-        Long userId = Long.valueOf(user.mId);
+        Long userId = user.mId;
         TwitterUser twitterUser = new TwitterUser(user);
         if (forceUpdate || !mUserIdHashMap.containsKey(userId)) {
             mUserIdHashMap.put(userId, twitterUser);
@@ -196,7 +196,7 @@ public class TwitterFetchUser {
     }
 
     public List<TwitterUser> getCachedUsers() {
-        return new ArrayList<TwitterUser>(mUserIdHashMap.values());
+        return new ArrayList<>(mUserIdHashMap.values());
     }
 
     public TwitterUser getCachedUser(Long userId) {
@@ -357,7 +357,7 @@ public class TwitterFetchUser {
                 try {
                     User user = null;
                     if (input.mVerifyCredentials != null
-                            && input.mVerifyCredentials.booleanValue()) {
+                            && input.mVerifyCredentials) {
                         Log.d("api-call", "verifyCredentials");
                         user = twitter.verifyCredentials();
                     } else {

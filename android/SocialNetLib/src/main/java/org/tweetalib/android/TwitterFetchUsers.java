@@ -53,17 +53,17 @@ public class TwitterFetchUsers {
 	 */
     public interface FetchUsersWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
 
-        public AppdotnetApi getAppdotnetInstance();
+        AppdotnetApi getAppdotnetInstance();
 
-        public String getCurrentAccountKey();
+        String getCurrentAccountKey();
 
-        public void addUser(User user);
+        void addUser(User user);
 
-        public void addUser(AdnUser user);
+        void addUser(AdnUser user);
 
-        public TwitterUser getUser(Long userID);
+        TwitterUser getUser(Long userID);
     }
 
     /*
@@ -71,7 +71,7 @@ public class TwitterFetchUsers {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(TwitterFetchResult result, TwitterUsers users);
+        void finished(TwitterFetchResult result, TwitterUsers users);
 
     }
 
@@ -93,9 +93,9 @@ public class TwitterFetchUsers {
 	 *
 	 */
     public TwitterFetchUsers() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchUsersCallbackHandle = 0;
-        mIdsHashMap = new HashMap<String, TwitterIds>();
+        mIdsHashMap = new HashMap<>();
 
     }
 
@@ -168,8 +168,7 @@ public class TwitterFetchUsers {
     /*
 	 *
 	 */
-    public TwitterUsers getUsers(TwitterContentHandle contentHandle,
-                                 TwitterPaging paging) {
+    public TwitterUsers getUsers(TwitterContentHandle contentHandle) {
 
         TwitterIds ids = getUserIds(contentHandle);
 
@@ -195,7 +194,7 @@ public class TwitterFetchUsers {
                                  TwitterPaging paging, FinishedCallback callback,
                                  ConnectionStatus connectionStatus) {
 
-        TwitterUsers result = getUsers(contentHandle, paging);
+        TwitterUsers result = getUsers(contentHandle);
         if (result == null) {
             trigger(contentHandle, paging, callback, connectionStatus);
         } else {
@@ -252,7 +251,7 @@ public class TwitterFetchUsers {
     public void updateFriendshipUsers(String currentUserScreenName,
                                       TwitterUsers usersToUpdate, boolean create,
                                       FinishedCallback callback, ConnectionStatus connectionStatus) {
-        ArrayList<String> userScreenNames = new ArrayList<String>();
+        ArrayList<String> userScreenNames = new ArrayList<>();
         for (int i = 0; i < usersToUpdate.getUserCount(); i++) {
             userScreenNames.add(usersToUpdate.getUser(i).getScreenName());
         }
@@ -266,7 +265,7 @@ public class TwitterFetchUsers {
     public void updateFriendshipScreenName(String currentUserScreenName,
                                            String screenNameToUpdate, boolean create,
                                            FinishedCallback callback, ConnectionStatus connectionStatus) {
-        ArrayList<String> userScreenNames = new ArrayList<String>();
+        ArrayList<String> userScreenNames = new ArrayList<>();
         userScreenNames.add(screenNameToUpdate);
         updateFriendshipScreenNames(currentUserScreenName, userScreenNames,
                 create, callback, connectionStatus);
@@ -306,7 +305,7 @@ public class TwitterFetchUsers {
     public void updateFriendshipUserId(long currentUserId, Long userIdToUpdate,
                                        boolean create, FinishedCallback callback,
                                        ConnectionStatus connectionStatus) {
-        ArrayList<Long> userIds = new ArrayList<Long>();
+        ArrayList<Long> userIds = new ArrayList<>();
         userIds.add(userIdToUpdate);
         updateFriendshipUserIds(currentUserId, userIds, create, callback,
                 connectionStatus);
@@ -343,7 +342,7 @@ public class TwitterFetchUsers {
     private void createBlockOrReportSpam(UsersType usersType,
                                          long currentUserId, Long userId, FinishedCallback callback,
                                          ConnectionStatus connectionStatus) {
-        ArrayList<Long> userIds = new ArrayList<Long>();
+        ArrayList<Long> userIds = new ArrayList<>();
         userIds.add(userId);
         createBlockOrReportSpam(usersType, currentUserId, userIds, callback,
                 connectionStatus);
@@ -423,7 +422,7 @@ public class TwitterFetchUsers {
             mCallbackHandle = callbackHandle;
             mContentHandle = contentHandle;
             mConnectionStatus = connectionStatus;
-            mUserIds = userIds != null ? new ArrayList<Long>(userIds) : null;
+            mUserIds = userIds != null ? new ArrayList<>(userIds) : null;
         }
 
         FetchUsersTaskInput(Integer callbackHandle,
@@ -434,9 +433,9 @@ public class TwitterFetchUsers {
             mCallbackHandle = callbackHandle;
             mContentHandle = contentHandle;
             mConnectionStatus = connectionStatus;
-            mScreenNames = userScreenNames != null ? new ArrayList<String>(
+            mScreenNames = userScreenNames != null ? new ArrayList<>(
                     userScreenNames) : null;
-            mUserIds = userIds != null ? new ArrayList<Long>(userIds) : null;
+            mUserIds = userIds != null ? new ArrayList<>(userIds) : null;
             mCreateFriendship = createFriendship;
         }
 
@@ -513,7 +512,7 @@ public class TwitterFetchUsers {
                                     .getIdentifier());
                             users = appdotnet.getUsersWhoReposted(postId);
                             setUsers(input.mContentHandle, ids);
-                        } catch (NumberFormatException e) {
+                        } catch (NumberFormatException ignored) {
                         }
                         break;
                     }
@@ -729,7 +728,7 @@ public class TwitterFetchUsers {
                         int numberToFetch = paging == null ? 40 : paging.getCount();
                         int start = 0;
                         int finish = numberToFetch;
-                        ArrayList<Long> fetchIds = new ArrayList<Long>();
+                        ArrayList<Long> fetchIds = new ArrayList<>();
                         boolean check = true;
                         while (check) {
                             //Establish ids for this batch

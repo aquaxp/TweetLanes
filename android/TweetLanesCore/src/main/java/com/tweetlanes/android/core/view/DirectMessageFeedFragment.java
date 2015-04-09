@@ -114,8 +114,7 @@ public class DirectMessageFeedFragment extends BaseLaneFragment {
     private TwitterDirectMessages mDirectMessagesCache;
     private ArrayList<TwitterDirectMessage> mCurrentViewDirectMessageConversion;
     private TwitterFetchDirectMessagesFinishedCallback mRefreshCallback;
-    private final ArrayList<DirectMessageItemView> mSelectedItems = new ArrayList<DirectMessageItemView>();
-    private MultipleDirectMessageSelectionCallback mMultipleDirectMessageSelectionCallback;
+    private final ArrayList<DirectMessageItemView> mSelectedItems = new ArrayList<>();
     private ViewSwitcher mViewSwitcher;
 
     private Long mNewestDirectMessageId;
@@ -172,7 +171,7 @@ public class DirectMessageFeedFragment extends BaseLaneFragment {
         mViewSwitcher = (ViewSwitcher) resultView.findViewById(R.id.profileSwitcher);
         mConversationListAdapter = new DirectMessageConversationListAdapter(inflater);
 
-        mMultipleDirectMessageSelectionCallback = new MultipleDirectMessageSelectionCallback();
+        MultipleDirectMessageSelectionCallback mMultipleDirectMessageSelectionCallback = new MultipleDirectMessageSelectionCallback();
 
         mConversationListView = (PullToRefreshListView) resultView.findViewById(R.id.pull_to_refresh_listview);
         mConversationListView.getRefreshableView().setChoiceMode(ListView.CHOICE_MODE_MULTIPLE_MODAL);
@@ -269,10 +268,7 @@ public class DirectMessageFeedFragment extends BaseLaneFragment {
             }
 
             return addCachedStatusesFromString(statusesAsString);
-        } catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (OutOfMemoryError e) {
+        } catch (JSONException | OutOfMemoryError e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -798,7 +794,7 @@ public class DirectMessageFeedFragment extends BaseLaneFragment {
                         TwitterManager.get().getSetDirectMessagesInstance().new FinishedCallback() {
 
                             @Override
-                            public void finished(boolean successful, Integer value) {
+                            public void finished(boolean successful) {
 
                                 if (!mDetached) {
                                     DirectMessageActivity activity = (DirectMessageActivity) getActivity();

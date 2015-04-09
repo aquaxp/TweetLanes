@@ -22,7 +22,7 @@ class Animator extends Thread {
     private long mLastTime = -1L;
 
     public Animator(GestureImageView view, String threadName) {
-        super(threadName);
+        super("GestureImageViewAnimator");
         this.mView = view;
     }
 

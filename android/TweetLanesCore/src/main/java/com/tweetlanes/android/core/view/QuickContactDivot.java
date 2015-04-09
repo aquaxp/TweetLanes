@@ -88,7 +88,7 @@ public class QuickContactDivot extends ImageView implements Divot {
     public void onDraw(Canvas c) {
         super.onDraw(c);
         c.save();
-        computeBounds(c);
+        computeBounds();
         mDrawable.draw(c);
         c.restore();
     }
@@ -119,7 +119,7 @@ public class QuickContactDivot extends ImageView implements Divot {
         return getCloseOffset() + mDrawableIntrinsicHeight;
     }
 
-    private void computeBounds(Canvas c) {
+    private void computeBounds() {
         final int left = 0;
         final int top = 0;
         final int right = getWidth();

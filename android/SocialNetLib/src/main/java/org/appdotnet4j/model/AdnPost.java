@@ -79,7 +79,7 @@ public class AdnPost {
                 try {
                     // This value comes back as 'null' when no value.
                     mInReplyTo = object.getLong("reply_to");
-                } catch (JSONException e) {
+                } catch (JSONException ignored) {
                 }
             }
 
@@ -87,7 +87,7 @@ public class AdnPost {
                 try {
                     // This value comes back as 'null' when no value.
                     mIsDeleted = object.getBoolean("is_deleted");
-                } catch (JSONException e) {
+                } catch (JSONException ignored) {
                 }
             }
 
@@ -144,9 +144,7 @@ public class AdnPost {
                 }
             }
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
     }

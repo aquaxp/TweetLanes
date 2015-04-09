@@ -225,7 +225,7 @@ public final class Util {
                     if (tagAsInt == comparisonId) {
                         return true;
                     }
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException ignored) {
 
                 }
             }
@@ -238,7 +238,7 @@ public final class Util {
 	 */
     public static ArrayList<String> getUrlsInString(String string) {
 
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
 
         String[] parts = string.split("\\s");
 

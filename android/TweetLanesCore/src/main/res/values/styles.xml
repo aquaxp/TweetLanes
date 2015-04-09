@@ -276,7 +276,7 @@
         <item name="android:icon">@drawable/ic_action_star_off_light</item>
     </style>
 
-    <style name="Widget"></style>
+    <style name="Widget"/>
 
     <style name="Widget.ListTabPageIndicator" parent="Widget">
         <item name="android:gravity">center_horizontal</item>

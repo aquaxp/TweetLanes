@@ -22,7 +22,7 @@ public class AdnPaging {
     private long mMaxId;
 
     public AdnPaging(int mPage) {
-        this.mPage = mPage;
+        this.mPage = 1;
     }
 
     public long getMaxId() {

@@ -68,23 +68,23 @@ public class TwitterFetchStatuses {
 	 */
     public interface FetchStatusesWorkerCallbacks {
 
-        public AppdotnetApi getAppdotnetApi();
+        AppdotnetApi getAppdotnetApi();
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
 
-        public void addUser(User user);
+        void addUser(User user);
 
-        public void addUser(AdnUser user);
+        void addUser(AdnUser user);
     }
 
     /*
      *
 	 */
     public TwitterFetchStatuses() {
-        mFinishedCallbackMap = new HashMap<Integer, TwitterFetchStatusesFinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchStatusesCallbackHandle = 0;
-        mStatusesHashMap = new HashMap<String, TwitterStatuses>();
-        mHashtagMap = new HashMap<String, String>();
+        mStatusesHashMap = new HashMap<>();
+        mHashtagMap = new HashMap<>();
     }
 
     /*
@@ -346,7 +346,7 @@ public class TwitterFetchStatuses {
                             int userId = Integer.valueOf(userIdAsString);
                             AdnPosts posts = appdotnetApi.getAdnUserStream(userId, paging);
                             contentFeed = setStatuses(input.mContentHandle, posts);
-                        } catch (NumberFormatException e) {
+                        } catch (NumberFormatException ignored) {
                         }
                         break;
                     }
@@ -368,7 +368,7 @@ public class TwitterFetchStatuses {
                             int userId = Integer.valueOf(userIdAsString);
                             AdnPosts posts = appdotnetApi.getAdnMentions(userId, paging);
                             contentFeed = setStatuses(input.mContentHandle, posts);
-                        } catch (NumberFormatException e) {
+                        } catch (NumberFormatException ignored) {
                         }
                         break;
                     }
@@ -497,7 +497,7 @@ public class TwitterFetchStatuses {
                                     int listId = Integer.valueOf(listIdAsString);
                                     ResponseList<twitter4j.Status> statuses = twitter.getUserListStatuses(listId, paging);
                                     contentFeed = setStatuses(input.mContentHandle, statuses);
-                                } catch (NumberFormatException e) {
+                                } catch (NumberFormatException ignored) {
                                 } catch (OutOfMemoryError e) {
                                     errorDescription = "There was an out of memory doing that!";
                                 }
@@ -580,11 +580,7 @@ public class TwitterFetchStatuses {
                             errorDescription += "\nTry again in " + e.getRateLimitStatus().getSecondsUntilReset()
                                     + " " + "seconds";
                         }
-                    } catch (OutOfMemoryError e) {
-                        e.printStackTrace();
-                        errorDescription = e.getMessage();
-                        Log.e("api-call", errorDescription, e);
-                    } catch (Exception e) {
+                    } catch (OutOfMemoryError | Exception e) {
                         e.printStackTrace();
                         errorDescription = e.getMessage();
                         Log.e("api-call", errorDescription, e);
@@ -616,7 +612,7 @@ public class TwitterFetchStatuses {
         if (mHashtagMap == null) {
             return null;
         }
-        return new ArrayList<String>(mHashtagMap.values());
+        return new ArrayList<>(mHashtagMap.values());
     }
 
     public void cacheHashtags(TwitterStatuses statuses) {

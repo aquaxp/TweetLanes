@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 
 android {
    compileSdkVersion 21
-   buildToolsVersion '21.1.0'
+   buildToolsVersion '21.1.2'
    defaultConfig {
       minSdkVersion 21
-      targetSdkVersion 21
+      targetSdkVersion 22
    }
    buildTypes {
       release {
@@ -18,7 +18,7 @@ android {
 dependencies {
    compile project(':android:SocialNetLib')
    compile fileTree(dir: 'libs', include: '*.jar')
-   compile 'com.android.support:support-v4:21.0.0'
+   compile 'com.android.support:support-v4:22.0.0'
    compile 'com.google.android.apps.dashclock:dashclock-api:2.0.0'
    compile 'com.turbomanage.basic-http-client:http-client-android:0.89'
 }

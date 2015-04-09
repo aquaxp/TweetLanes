@@ -46,7 +46,7 @@ class PriorityExecutor implements BaseExecutor {
         }
     }
 
-    private final ArrayList<PrioritizedRunnable> mTasks = new ArrayList<PrioritizedRunnable>();
+    private final ArrayList<PrioritizedRunnable> mTasks = new ArrayList<>();
     private PrioritizedRunnable mActive;
 
     /*

@@ -142,7 +142,7 @@ public class BootActivity extends Activity {
                     startHomeActivity(statusText, "");
                 }
                 urlValid = true;
-            } else if (urlPath.contains("/i/redirect") && recuse == false) {
+            } else if (urlPath.contains("/i/redirect") && !recuse) {
                 String innerUrl = uriData.getQueryParameter("url");
                 urlValid = ReadUrl(Uri.parse(innerUrl), true);
             } else if (urlPath.contains("/intent/follow") || urlPath.contains("/intent/user")) {
@@ -194,7 +194,7 @@ public class BootActivity extends Activity {
     private String getUriPartAfterText(Uri uriData, String partBefore) {
         boolean nextPartStatus = false;
         for (String uriPart : uriData.getPathSegments()) {
-            if (nextPartStatus == true) {
+            if (nextPartStatus) {
                 return uriPart;
             }
             if (uriPart.toLowerCase().equals(partBefore)) {

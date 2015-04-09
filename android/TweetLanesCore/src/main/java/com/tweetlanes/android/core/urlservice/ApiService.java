@@ -12,7 +12,6 @@
 package com.tweetlanes.android.core.urlservice;
 
 import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -30,7 +29,7 @@ public abstract class ApiService {
     /*
      *
 	 */
-    public static HttpResponse getRequest(String url, String debugName) {
+    public static HttpResponse getRequest(String url) {
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet();
         HttpResponse response = null;
@@ -39,13 +38,7 @@ public abstract class ApiService {
             // Log.d("tweetlanes url fetch", url);
             response = client.execute(request);
             // Log.d(TAG, debugName + " complete");
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (URISyntaxException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -56,7 +49,7 @@ public abstract class ApiService {
     /*
      *
 	 */
-    public static HttpResponse postRequest(String url, String debugName) {
+    public static HttpResponse postRequest(String url) {
         HttpClient client = new DefaultHttpClient();
         HttpPost request = new HttpPost();
         HttpResponse response = null;
@@ -65,13 +58,7 @@ public abstract class ApiService {
             // Log.d("tweetlanes url fetch", url);
             response = client.execute(request);
             // Log.d(TAG, debugName + " complete");
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (URISyntaxException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

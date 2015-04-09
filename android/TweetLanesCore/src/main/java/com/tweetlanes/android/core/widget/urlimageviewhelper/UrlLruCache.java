@@ -9,7 +9,7 @@ public class UrlLruCache extends LruCache<String, BitmapDrawable> {
     }
 
     @Override
-    protected int sizeOf(String key, BitmapDrawable value) {
+    protected int sizeOf(BitmapDrawable value) {
         if (value != null) {
             Bitmap b = value.getBitmap();
             if (b != null)

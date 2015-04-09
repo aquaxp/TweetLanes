@@ -113,7 +113,7 @@ public class TwitterUtil {
     public static String[] getUserMentions(UserMentionEntity[] entities) {
         if (entities != null && entities.length > 0) {
 
-            ArrayList<String> arrayList = new ArrayList<String>();
+            ArrayList<String> arrayList = new ArrayList<>();
 
             for (UserMentionEntity entity : entities) {
                 if (entity.getScreenName() != null) {

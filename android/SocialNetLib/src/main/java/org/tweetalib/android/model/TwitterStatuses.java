@@ -39,7 +39,7 @@ public class TwitterStatuses {
      *
 	 */
     public TwitterStatuses(TwitterStatuses another) {
-        _mStatuses = new ArrayList<TwitterStatus>(another._mStatuses);
+        _mStatuses = new ArrayList<>(another._mStatuses);
         mCounts = another.mCounts.clone();
         mGetNewStatusesMaxId = another.mGetNewStatusesMaxId;
     }
@@ -48,7 +48,7 @@ public class TwitterStatuses {
      *
 	 */
     public TwitterStatuses() {
-        _mStatuses = new ArrayList<TwitterStatus>();
+        _mStatuses = new ArrayList<>();
     }
 
     /*
@@ -65,7 +65,7 @@ public class TwitterStatuses {
     private static final String KEY_STATUSES = "statuses";
 
     public TwitterStatuses(String jsonAsString) {
-        _mStatuses = new ArrayList<TwitterStatus>();
+        _mStatuses = new ArrayList<>();
 
         try {
             JSONObject object = new JSONObject(jsonAsString);
@@ -245,9 +245,9 @@ public class TwitterStatuses {
 	 */
     public interface AddUserCallback {
 
-        public void addUser(User user);
+        void addUser(User user);
 
-        public void addUser(AdnUser user);
+        void addUser(AdnUser user);
     }
 
     /*
@@ -390,7 +390,7 @@ public class TwitterStatuses {
 
         int size = size();
         if (size != 0) {
-            ArrayList<Integer> toRemoveList = new ArrayList<Integer>();
+            ArrayList<Integer> toRemoveList = new ArrayList<>();
 
             for (int existingIndex = 0; existingIndex < size; existingIndex++) {
                 TwitterStatus user = get(existingIndex);
@@ -423,7 +423,7 @@ public class TwitterStatuses {
         Integer statusIndex = getStatusIndex(statusId);
 
         if (statusIndex != null) {
-            return get(statusIndex.intValue());
+            return get(statusIndex);
         }
 
         return null;

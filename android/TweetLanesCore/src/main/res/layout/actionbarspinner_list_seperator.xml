@@ -3,6 +3,6 @@
           style="?android:attr/listSeparatorTextViewStyle"
           android:textColor="#ff777777"
           android:id="@+id/listSeparator"
-          android:text="placehodler"
+          android:text="@string/placeholder"
         />
 

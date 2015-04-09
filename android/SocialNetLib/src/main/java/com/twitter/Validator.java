@@ -8,9 +8,6 @@ import java.text.Normalizer;
 public class Validator {
     private static final int MAX_TWEET_LENGTH = 140;
 
-    private int shortUrlLength = 22;
-    private int shortUrlLengthHttps = 23;
-
     private final Extractor extractor = new Extractor();
 
     public int getTweetLength(String text) {
@@ -20,6 +17,8 @@ public class Validator {
         for (Extractor.Entity urlEntity : extractor
                 .extractURLsWithIndices(text)) {
             length += urlEntity.start - urlEntity.end;
+            int shortUrlLengthHttps = 23;
+            int shortUrlLength = 22;
             length += urlEntity.value.toLowerCase().startsWith("https://") ? shortUrlLengthHttps
                     : shortUrlLength;
         }

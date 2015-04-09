@@ -23,7 +23,7 @@ public class AdnInteractions {
 
     public AdnInteractions(String jsonAsString) {
 
-        mInteractions = new ArrayList<AdnInteraction>();
+        mInteractions = new ArrayList<>();
 
         try {
             JSONArray jsonArray = new JSONObject(jsonAsString).getJSONArray("data");

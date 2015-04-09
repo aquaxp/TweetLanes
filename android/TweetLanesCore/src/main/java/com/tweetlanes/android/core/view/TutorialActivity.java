@@ -166,7 +166,7 @@ public class TutorialActivity extends FragmentActivity {
     /*
 	 * 
 	 */
-    public void onFinishTutorialClicked(View view) {
+    public void onFinishTutorialClicked() {
         // We don't want to come back here, so remove from the activity stack
         finish();
         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);

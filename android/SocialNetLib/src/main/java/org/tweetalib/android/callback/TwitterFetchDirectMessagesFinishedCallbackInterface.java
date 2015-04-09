@@ -22,7 +22,7 @@ import org.tweetalib.android.model.TwitterDirectMessages;
 
 public interface TwitterFetchDirectMessagesFinishedCallbackInterface {
 
-    public void finished(TwitterContentHandle contentHandle, TwitterFetchResult result,
-                         TwitterDirectMessages messages);
+    void finished(TwitterContentHandle contentHandle, TwitterFetchResult result,
+                  TwitterDirectMessages messages);
 
 }

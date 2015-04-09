@@ -30,7 +30,7 @@ public final class PlaceholderPagerFragment extends BaseLaneFragment {
      *
 	 */
     public static PlaceholderPagerFragment newInstance(int laneIndex,
-                                                       String content, int position) {
+                                                       String content) {
         PlaceholderPagerFragment fragment = new PlaceholderPagerFragment();
 
         fragment.configureBaseLaneFragment(laneIndex, "Placeholder", null);

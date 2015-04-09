@@ -88,7 +88,6 @@ public class DirectMessageItemView extends LinearLayout {
     private View mMessageBlock;
     private QuickContactDivot mAvatar;
     private boolean mFullConversation;
-    private ViewHolder mHolder;
 
     /*
      *
@@ -128,7 +127,7 @@ public class DirectMessageItemView extends LinearLayout {
                           MessageType messageType, boolean fullConversation,
                           DirectMessageItemViewCallbacks callbacks) {
 
-        mHolder = (ViewHolder) getTag();
+        ViewHolder mHolder = (ViewHolder) getTag();
         if (mHolder == null) {
             mHolder = new ViewHolder(this);
             setTag(mHolder);
@@ -375,13 +374,13 @@ public class DirectMessageItemView extends LinearLayout {
      */
     public interface DirectMessageItemViewCallbacks {
 
-        public boolean onSingleTapConfirmed(View view, int position);
+        boolean onSingleTapConfirmed(View view, int position);
 
-        public void onLongPress(View view, int position);
+        void onLongPress(View view, int position);
 
-        public Activity getActivity();
+        Activity getActivity();
 
-        public LazyImageLoader getProfileImageLoader();
+        LazyImageLoader getProfileImageLoader();
     }
 
     private static class ViewHolder {

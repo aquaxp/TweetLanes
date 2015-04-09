@@ -79,8 +79,8 @@ public class ProfileActivity extends BaseLaneActivity {
         }
 
         BaseLaneFragment fragment = super.getFragmentAtIndex(0);
-        super.setCurrentComposeFragment((fragment instanceof DirectMessageFeedFragment) ? super.COMPOSE_DIRECT_MESSAGE
-                : super.COMPOSE_TWEET);
+        super.setCurrentComposeFragment((fragment instanceof DirectMessageFeedFragment) ? COMPOSE_DIRECT_MESSAGE
+                : COMPOSE_TWEET);
 
         if ((clearCompose != null && clearCompose.equals("true")) && !savedStateRecreate) {
             clearCompose();
@@ -320,7 +320,7 @@ public class ProfileActivity extends BaseLaneActivity {
 
                     default:
                         result = PlaceholderPagerFragment.newInstance(position,
-                                laneDescriptor.getLaneTitle(), position);
+                                laneDescriptor.getLaneTitle());
                         break;
                 }
             } else {

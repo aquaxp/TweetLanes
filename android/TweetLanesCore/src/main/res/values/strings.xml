@@ -491,7 +491,7 @@
     <string name="summary_freeforlife_preference_no">Not registered</string>
 
     <string name="title_version_preference">Tweet Lanes version</string>
-    <string name="summary_version_preference"></string>
+    <string name="summary_version_preference"/>
 
     <string name="title_help_preference">Where To Get Help?</string>
     <string name="summary_help_preference">Send us a tweet or App.net message.\nWe can be found @TweetLanes on both networks.</string>
@@ -535,7 +535,7 @@
     </string>
 
     <string name="title_displayurl_preference">Display URL</string>
-    <string name="summary_displayurl_preference">Show the full URL in tweets rather than trimmed with "..."
+    <string name="summary_displayurl_preference">Show the full URL in tweets rather than trimmed with "…"
     </string>
 
     <string name="settings_image_loading">Image loading</string>
@@ -570,5 +570,8 @@
 
     <string name="title_changelog">Change log</string>
     <string name="changelog_close">Close</string>
+    <string name="screen_name">ScreenName</string>
+    <string name="placeholder">placehodler</string>
+    <string name="hashtag">#hashtag</string>
 </resources>
 

@@ -25,7 +25,7 @@ import twitter4j.UserList;
 public class TwitterLists {
 
     public TwitterLists(ResponseList<UserList> lists) {
-        mLists = new ArrayList<TwitterList>();
+        mLists = new ArrayList<>();
 
         for (UserList list : lists) {
             mLists.add(new TwitterList(list));
@@ -38,7 +38,7 @@ public class TwitterLists {
     }
 
     public TwitterLists() {
-        mLists = new ArrayList<TwitterList>();
+        mLists = new ArrayList<>();
     }
 
     public int getListCount() {

@@ -50,9 +50,9 @@ public class TwitterModifyStatuses {
 	 */
     public interface ModifyStatusesWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
 
-        public AppdotnetApi getAppdotnetApi();
+        AppdotnetApi getAppdotnetApi();
     }
 
     /*
@@ -60,7 +60,7 @@ public class TwitterModifyStatuses {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(boolean successful, TwitterStatuses statuses, Integer value);
+        void finished(boolean successful);
 
     }
 
@@ -107,7 +107,7 @@ public class TwitterModifyStatuses {
      *
 	 */
     public TwitterModifyStatuses() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mModifyStatusesCallbackHandle = 0;
     }
 
@@ -342,7 +342,7 @@ public class TwitterModifyStatuses {
 
             FinishedCallback callback = getModifyStatusesCallback(output.mCallbackHandle);
             if (callback != null) {
-                callback.finished(output.mResult.mErrorMessage == null, output.mFeed, output.mValue);
+                callback.finished(output.mResult.mErrorMessage == null);
                 removeModifyStatusesCallback(callback);
             }
 

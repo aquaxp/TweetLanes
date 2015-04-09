@@ -15,10 +15,10 @@ package com.tweetlanes.android.core.widget.gestureimageview;
  */
 public interface GestureImageViewListener {
 
-    public void onTouch(float x, float y);
+    void onTouch(float x, float y);
 
-    public void onScale(float scale);
+    void onScale(float scale);
 
-    public void onPosition(float x, float y);
+    void onPosition(float x, float y);
 
 }

@@ -32,10 +32,6 @@ public class UserFeedItemView extends LinearLayout {
 
     private final Path mPath = new Path();
     private final Paint mPaint = new Paint();
-    private Context mContext;
-    private TwitterUser mUser;
-    private long mUserId;
-    private String mUserScreenName;
     private View mMessageBlock;
     private QuickContactDivot mAvatar;
 
@@ -55,16 +51,16 @@ public class UserFeedItemView extends LinearLayout {
     }
 
     void init(Context context) {
-        mContext = context;
+        Context mContext = context;
     }
 
-    public void configure(TwitterUser user, int position,
+    public void configure(TwitterUser user,
                           UserFeedItemViewCallbacks callbacks) {
 
-        mUser = user;
+        TwitterUser mUser = user;
 
-        mUserId = user.getId();
-        mUserScreenName = user.getScreenName();
+        long mUserId = user.getId();
+        String mUserScreenName = user.getScreenName();
         TextView screenNameTextView = (TextView) findViewById(R.id.screen_name);
         screenNameTextView.setText("@" + user.getScreenName());
 

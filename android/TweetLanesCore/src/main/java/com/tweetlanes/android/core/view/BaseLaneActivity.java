@@ -71,6 +71,7 @@ import org.tweetalib.android.model.TwitterUser;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 class BaseLaneActivity extends FragmentActivity implements
         SearchView.OnQueryTextListener {
@@ -198,7 +199,7 @@ class BaseLaneActivity extends FragmentActivity implements
                 new IntentFilter("" + SystemEvent.RESTART_APP));
 
         Intent intent = getIntent();
-        if (intent.getAction() == Intent.ACTION_VIEW) {
+        if (Objects.equals(intent.getAction(), Intent.ACTION_VIEW)) {
             intent.putExtra("clearCompose", "true");
         }
     }
@@ -213,7 +214,7 @@ class BaseLaneActivity extends FragmentActivity implements
         super.onPostCreate(savedInstanceState);
 
         Intent intent = getIntent();
-        if (intent.getAction() != Intent.ACTION_SEND && intent.getAction() != Intent.ACTION_VIEW) {
+        if (!Objects.equals(intent.getAction(), Intent.ACTION_SEND) && !Objects.equals(intent.getAction(), Intent.ACTION_VIEW)) {
             setComposeDefault();
         }
     }
@@ -348,7 +349,7 @@ class BaseLaneActivity extends FragmentActivity implements
     /*
 	 *
 	 */
-    protected final SparseArray<BaseLaneFragment> mLaneFragmentHashMap = new SparseArray<BaseLaneFragment>();
+    protected final SparseArray<BaseLaneFragment> mLaneFragmentHashMap = new SparseArray<>();
     private int activeInitialDownloadCount = 0;
 
     /*
@@ -810,11 +811,10 @@ class BaseLaneActivity extends FragmentActivity implements
     /**
      * Get a temporary file with a fixed (=known in advance) file name
      *
-     * @param context activity context
      * @return a temp file in the external storage in a package-specific
      * directory
      */
-    private static File getFixedTempFile(Context context) {
+    private static File getFixedTempFile() {
         final File path = new File(Environment.getExternalStorageDirectory(),
                 "temp/images/Tweet Lanes");
         path.mkdirs();
@@ -828,11 +828,10 @@ class BaseLaneActivity extends FragmentActivity implements
     /**
      * Get a temporary file with a unique file name
      *
-     * @param context activity context
      * @return a temp file in the external storage in a package-specific
      * directory
      */
-    private static File getTempFile(Context context) {
+    private static File getTempFile() {
         final File path = new File(Environment.getExternalStorageDirectory(),
                 "temp/images/Tweet Lanes");
         path.mkdirs();
@@ -1031,8 +1030,8 @@ class BaseLaneActivity extends FragmentActivity implements
             if (resultCode == Activity.RESULT_OK) {
 
                 // large size image
-                File file = getFixedTempFile(this);
-                File newPath = getTempFile(this);
+                File file = getFixedTempFile();
+                File newPath = getTempFile();
                 boolean success = file.renameTo(newPath);
                 if (success)
                     imagePath = newPath.getAbsolutePath();
@@ -1151,10 +1150,10 @@ class BaseLaneActivity extends FragmentActivity implements
 
             if (fragment != null) {
                 if (!fragment.configureOptionsMenu(inflater, menu)) {
-                    inflater.inflate(defaultOptionsMenu.intValue(), menu);
+                    inflater.inflate(defaultOptionsMenu, menu);
                 }
             } else {
-                inflater.inflate(defaultOptionsMenu.intValue(), menu);
+                inflater.inflate(defaultOptionsMenu, menu);
             }
 
             configureActionBarSearchView(menu);
@@ -1192,7 +1191,7 @@ class BaseLaneActivity extends FragmentActivity implements
             if (Util.isIntentAvailable(this,
                     MediaStore.ACTION_IMAGE_CAPTURE)) {
                 Uri tmpUri = Uri
-                        .fromFile(getFixedTempFile(BaseLaneActivity.this));
+                        .fromFile(getFixedTempFile());
                 Intent intent = new Intent(
                         MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, tmpUri);
@@ -1330,7 +1329,7 @@ class BaseLaneActivity extends FragmentActivity implements
     void setComposeDefault() {
         if (this.mCurrentComposeFragment == mComposeTweetFragment) {
             String draft = mComposeTweetFragment.getTweetDefaultDraft();
-            if (draft == null || draft == "") {
+            if (draft == null || Objects.equals(draft, "")) {
                 setComposeTweetDefault();
             } else {
                 mComposeTweetFragment.updateStatusHint();

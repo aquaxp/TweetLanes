@@ -61,7 +61,7 @@ public class TwitterAuthActivity extends Activity {
 	 */ private final GetAuthUrlCallback mGetAuthUrlCallback = TwitterManager.get().getSignInInstance().new GetAuthUrlCallback() {
 
         @Override
-        public void finished(boolean successful, String url, RequestToken requestToken) {
+        public void finished(String url, RequestToken requestToken) {
             getAuthUrlCallback(url, requestToken);
 
         }

@@ -18,7 +18,6 @@ import com.tweetlanes.android.core.urlservice.ApiService;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -39,7 +38,7 @@ class TweetMarkerAPI extends ApiService {
 
     private static final String API_LAST_READ = "lastread";
 
-    public static HttpResponse getRequest(String url, String debugName) {
+    public static HttpResponse getRequest(String url) {
         HttpClient client = new DefaultHttpClient();
         HttpGet request = new HttpGet();
         request.addHeader("X-Auth-Service-Provider",
@@ -52,13 +51,7 @@ class TweetMarkerAPI extends ApiService {
             // Log.d("tweetlanes url fetch", url);
             response = client.execute(request);
             // Log.d(TAG, debugName + " complete");
-        } catch (URISyntaxException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClientProtocolException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (URISyntaxException | IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -71,7 +64,7 @@ class TweetMarkerAPI extends ApiService {
 	 */
     public interface APICallback {
 
-        public void finished(TwitterFetchResult fetchResult, String response);
+        void finished(TwitterFetchResult fetchResult, String response);
     }
 
     /*
@@ -112,7 +105,7 @@ class TweetMarkerAPI extends ApiService {
                 String url = String.format(BASE_URL + API_LAST_READ
                         + "?api_key=%s&username=%s&collection=timeline",
                         Uri.encode("TW-2C4324C62DF4"), Uri.encode(screenName));
-                HttpResponse response = getRequest(url, "freeForLife");
+                HttpResponse response = getRequest(url);
                 String jsonAsString = null;
                 try {
                     if (response != null) {
@@ -121,10 +114,7 @@ class TweetMarkerAPI extends ApiService {
                         // JSONObject jsonObject = new JSONObject(jsonAsString);
                         // success = jsonObject.getBoolean("success");
                     }
-                } catch (ParseException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
+                } catch (ParseException | IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
                 }

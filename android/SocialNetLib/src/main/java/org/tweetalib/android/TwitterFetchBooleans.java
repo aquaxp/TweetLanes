@@ -44,9 +44,9 @@ public class TwitterFetchBooleans {
 	 */
     public interface FetchBooleansWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
 
-        public AppdotnetApi getAppdotnetInstance();
+        AppdotnetApi getAppdotnetInstance();
     }
 
     /*
@@ -54,8 +54,8 @@ public class TwitterFetchBooleans {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(TwitterFetchResult result,
-                             ArrayList<Boolean> returnValues);
+        void finished(TwitterFetchResult result,
+                      ArrayList<Boolean> returnValues);
 
     }
 
@@ -77,7 +77,7 @@ public class TwitterFetchBooleans {
 	 *
 	 */
     public TwitterFetchBooleans() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchBooleanCallbackHandle = 0;
     }
 
@@ -192,7 +192,7 @@ public class TwitterFetchBooleans {
             mResult = result;
             mCallbackHandle = callbackHandle;
             if (returnValues != null) {
-                mReturnValues = new ArrayList<Boolean>(returnValues);
+                mReturnValues = new ArrayList<>(returnValues);
             }
         }
 
@@ -211,7 +211,7 @@ public class TwitterFetchBooleans {
         protected FetchBooleanTaskOutput doInBackground(
                 FetchBooleanTaskInput... inputArray) {
 
-            ArrayList<Boolean> result = new ArrayList<Boolean>();
+            ArrayList<Boolean> result = new ArrayList<>();
             FetchBooleanTaskInput input = inputArray[0];
             Twitter twitter = getTwitterInstance();
             AppdotnetApi appdotnet = getAppdotnetInstance();

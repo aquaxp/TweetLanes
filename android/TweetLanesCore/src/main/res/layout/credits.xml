@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/credits_lacy_networks"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:id="@+id/credit_lacy_networks"
                     android:layout_below="@+id/credit_lacy_name"
                     android:layout_alignParentRight="true"
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/credits_fammy_networks"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:id="@+id/credit_fammy_networks"
                     android:layout_below="@+id/credit_fammy_name"
                     android:layout_alignParentRight="true"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/credits_duffy_networks"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:id="@+id/credit_duffy_networks"
                     android:layout_below="@+id/credit_duffy_name"
                     android:layout_alignParentRight="true"
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/credits_blythmeister_networks"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:textSize="17dp"
+                    android:textSize="17sp"
                     android:id="@+id/credit_blythmeister_networks"
                     android:layout_below="@+id/credit_blythmeister_name"
                     android:layout_alignParentRight="true"
@@ -187,7 +187,7 @@
                 android:paddingBottom="10dp"
                 android:text="@string/credits_oss_heading"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:layout_marginTop="9dp"/>
 
         <TextView
@@ -197,7 +197,7 @@
                 android:paddingLeft="10dp"
                 android:text="@string/credits_oss_items"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="17dp"/>
+                android:textSize="17sp"/>
 
         <TextView
                 android:id="@+id/credits_art_items"
@@ -205,7 +205,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="14dp"
                 android:text="@string/credits_art_items"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <TextView
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:paddingTop="14dp"
                 android:text="@string/credits_app_copyright"
-                android:textSize="17dp"
+                android:textSize="17sp"
                 android:textAppearance="?android:attr/textAppearanceSmall"/>
 
     </LinearLayout>

@@ -27,7 +27,7 @@ import twitter4j.User;
 public class TwitterDirectMessages {
 
     public ArrayList<TwitterDirectMessage> getRawReceivedMessages() {
-        ArrayList<TwitterDirectMessage> list = new ArrayList<TwitterDirectMessage>();
+        ArrayList<TwitterDirectMessage> list = new ArrayList<>();
 
         for (Conversation c : mConversations) {
             for (TwitterDirectMessage message : c.getMessages()) {
@@ -59,7 +59,7 @@ public class TwitterDirectMessages {
          *
 		 */
         public Conversation(Long otherUserId) {
-            mMessages = new ArrayList<TwitterDirectMessage>();
+            mMessages = new ArrayList<>();
             mOtherUserId = otherUserId;
         }
 
@@ -175,14 +175,14 @@ public class TwitterDirectMessages {
 	 */
     public interface AddUserCallback {
 
-        public void addUser(User user);
+        void addUser(User user);
     }
 
     /*
 	 * 
 	 */
     public TwitterDirectMessages(long messageOwnerId) {
-        mConversations = new ArrayList<Conversation>();
+        mConversations = new ArrayList<>();
         mConversationHandle = new TwitterDirectMessagesHandle(messageOwnerId,
                 null);
         mMessageOwnerId = messageOwnerId;
@@ -262,7 +262,7 @@ public class TwitterDirectMessages {
 
     public void remove(TwitterDirectMessages directMessages) {
 
-        ArrayList<Conversation> removeConversations = new ArrayList<Conversation>();
+        ArrayList<Conversation> removeConversations = new ArrayList<>();
 
         for (Conversation conversation : mConversations) {
             conversation.remove(directMessages.getAllMessages());
@@ -299,7 +299,7 @@ public class TwitterDirectMessages {
 
     public ArrayList<TwitterDirectMessage> getAllMessagesInConversation(TwitterDirectMessage message) {
         Conversation fullConvo = getConversationForMessage(message);
-        ArrayList<TwitterDirectMessage> allMessages = new ArrayList<TwitterDirectMessage>();
+        ArrayList<TwitterDirectMessage> allMessages = new ArrayList<>();
 
         if (fullConvo != null) {
             allMessages = fullConvo.mMessages;
@@ -329,7 +329,7 @@ public class TwitterDirectMessages {
         if (handle.getKey().equals(mConversationHandle.getKey())
                 && handle.mOtherUserId == null) {
 
-            ArrayList<TwitterDirectMessage> topMessages = new ArrayList<TwitterDirectMessage>();
+            ArrayList<TwitterDirectMessage> topMessages = new ArrayList<>();
             for (int i = 0; i < mConversations.size(); i++) {
                 TwitterDirectMessage message = mConversations.get(i)
                         .getNewest();
@@ -352,7 +352,7 @@ public class TwitterDirectMessages {
 
     public ArrayList<TwitterDirectMessage> getAllMessages() {
 
-        ArrayList<TwitterDirectMessage> messages = new ArrayList<TwitterDirectMessage>();
+        ArrayList<TwitterDirectMessage> messages = new ArrayList<>();
 
         for (Conversation conversation : mConversations) {
             messages.addAll(conversation.getMessages());
@@ -363,7 +363,7 @@ public class TwitterDirectMessages {
 
     public ArrayList<TwitterDirectMessage> getAllConversation(long otherUserId) {
 
-        ArrayList<TwitterDirectMessage> messages = new ArrayList<TwitterDirectMessage>();
+        ArrayList<TwitterDirectMessage> messages = new ArrayList<>();
 
         for (Conversation conversation : mConversations) {
             if (conversation.mOtherUserId == otherUserId) {

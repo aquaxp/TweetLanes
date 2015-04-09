@@ -256,7 +256,7 @@ public abstract class AsyncTaskEx<Params, Progress, Result> {
         }
     };
 
-    private static final BlockingQueue<Runnable> sPoolWorkQueue = new LinkedBlockingQueue<Runnable>(
+    private static final BlockingQueue<Runnable> sPoolWorkQueue = new LinkedBlockingQueue<>(
             10);
 
     /**
@@ -359,7 +359,7 @@ public abstract class AsyncTaskEx<Params, Progress, Result> {
     private Result postResult(Result result) {
         @SuppressWarnings("unchecked")
         Message message = sHandler.obtainMessage(MESSAGE_POST_RESULT,
-                new PrioritizedAsyncTaskResult<Result>(this, result));
+                new PrioritizedAsyncTaskResult<>(this, result));
         message.sendToTarget();
         return result;
     }
@@ -584,7 +584,7 @@ public abstract class AsyncTaskEx<Params, Progress, Result> {
 
     public final AsyncTaskEx<Params, Progress, Result> execute(int priority,
                                                                String description, Params... params) {
-        return executeOnExecutor(sDefaultExecutor, priority, description,
+        return executeOnExecutor(sDefaultExecutor, priority,
                 params);
     }
 
@@ -624,7 +624,7 @@ public abstract class AsyncTaskEx<Params, Progress, Result> {
      * @see #execute(Object[])
      */
     final AsyncTaskEx<Params, Progress, Result> executeOnExecutor(
-            BaseExecutor exec, int priority, String description,
+            BaseExecutor exec, int priority,
             Params... params) {
         if (mStatus != Status.PENDING) {
             switch (mStatus) {
@@ -677,7 +677,7 @@ public abstract class AsyncTaskEx<Params, Progress, Result> {
     protected final void publishProgress(Progress... values) {
         if (!isCancelled()) {
             sHandler.obtainMessage(MESSAGE_POST_PROGRESS,
-                    new PrioritizedAsyncTaskResult<Progress>(this, values))
+                    new PrioritizedAsyncTaskResult<>(this, values))
                     .sendToTarget();
         }
     }

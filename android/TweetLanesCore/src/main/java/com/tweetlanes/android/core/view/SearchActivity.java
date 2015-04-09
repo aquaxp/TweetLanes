@@ -153,7 +153,7 @@ public class SearchActivity extends BaseLaneActivity {
 
                 default:
                     result = PlaceholderPagerFragment.newInstance(position,
-                            laneDescriptor.getLaneTitle(), position);
+                            laneDescriptor.getLaneTitle());
                     break;
             }
             return result;

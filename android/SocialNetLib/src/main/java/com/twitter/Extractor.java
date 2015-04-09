@@ -159,7 +159,7 @@ public class Extractor {
      * @return list of extracted entities
      */
     public List<Entity> extractEntitiesWithIndices(String text) {
-        List<Entity> entities = new ArrayList<Entity>();
+        List<Entity> entities = new ArrayList<>();
         entities.addAll(extractURLsWithIndices(text));
         entities.addAll(extractHashtagsWithIndices(text, false));
         entities.addAll(extractMentionsOrListsWithIndices(text));
@@ -181,7 +181,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<String> extracted = new ArrayList<String>();
+        List<String> extracted = new ArrayList<>();
         for (Entity entity : extractMentionedScreennamesWithIndices(text)) {
             extracted.add(entity.value);
         }
@@ -196,7 +196,7 @@ public class Extractor {
      * @return List of usernames referenced (without the leading @ sign)
      */
     List<Entity> extractMentionedScreennamesWithIndices(String text) {
-        List<Entity> extracted = new ArrayList<Entity>();
+        List<Entity> extracted = new ArrayList<>();
         for (Entity entity : extractMentionsOrListsWithIndices(text)) {
             if (entity.listSlug == null) {
                 extracted.add(entity);
@@ -224,7 +224,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<Entity> extracted = new ArrayList<Entity>();
+        List<Entity> extracted = new ArrayList<>();
         Matcher matcher = Regex.VALID_MENTION_OR_LIST.matcher(text);
         while (matcher.find()) {
             String after = text.substring(matcher.end());
@@ -284,7 +284,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<String> urls = new ArrayList<String>();
+        List<String> urls = new ArrayList<>();
         for (Entity entity : extractURLsWithIndices(text)) {
             urls.add(entity.value);
         }
@@ -309,7 +309,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<Entity> urls = new ArrayList<Entity>();
+        List<Entity> urls = new ArrayList<>();
 
         Matcher matcher = Regex.VALID_URL.matcher(text);
         while (matcher.find()) {
@@ -353,7 +353,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<String> extracted = new ArrayList<String>();
+        List<String> extracted = new ArrayList<>();
         for (Entity entity : extractHashtagsWithIndices(text)) {
             extracted.add(entity.value);
         }
@@ -399,7 +399,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<Entity> extracted = new ArrayList<Entity>();
+        List<Entity> extracted = new ArrayList<>();
         Matcher matcher = Regex.VALID_HASHTAG.matcher(text);
 
         while (matcher.find()) {
@@ -442,7 +442,7 @@ public class Extractor {
             return Collections.emptyList();
         }
 
-        List<String> extracted = new ArrayList<String>();
+        List<String> extracted = new ArrayList<>();
         for (Entity entity : extractCashtagsWithIndices(text)) {
             extracted.add(entity.value);
         }
@@ -469,7 +469,7 @@ public class Extractor {
 
         }
 
-        List<Entity> extracted = new ArrayList<Entity>();
+        List<Entity> extracted = new ArrayList<>();
         Matcher matcher = Regex.VALID_CASHTAG.matcher(text);
 
         while (matcher.find()) {

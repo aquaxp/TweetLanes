@@ -15,6 +15,6 @@ package com.tweetlanes.android.core.widget.gestureimageview;
  */
 public interface MoveAnimationListener {
 
-    public void onMove(float x, float y);
+    void onMove(float x, float y);
 
 }

@@ -19,7 +19,7 @@ package org.asynctasktex;
 import java.util.ArrayDeque;
 
 class SerialExecutor implements BaseExecutor {
-    private final ArrayDeque<Runnable> mTasks = new ArrayDeque<Runnable>();
+    private final ArrayDeque<Runnable> mTasks = new ArrayDeque<>();
     private Runnable mActive;
 
     @Override

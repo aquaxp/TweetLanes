@@ -43,7 +43,7 @@ public class AdnUser {
                     JSONObject description = object
                             .getJSONObject("description");
                     mDescription = description.getString("text");
-                } catch (JSONException e) {
+                } catch (JSONException ignored) {
                 }
             }
 

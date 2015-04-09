@@ -69,8 +69,6 @@ public final class UrlImageViewHelper {
         mResources = new Resources(mgr, mMetrics, context.getResources().getConfiguration());
     }
 
-    private static boolean mUseBitmapScaling = true;
-
     private static Drawable loadDrawableFromStream(final Context context, final String url, final String filename, final int targetWidth, final int targetHeight) {
         prepareResources(context);
 
@@ -80,6 +78,7 @@ public final class UrlImageViewHelper {
         clog("Decoding: " + url + " " + filename);
         try {
             BitmapFactory.Options o = new BitmapFactory.Options();
+            boolean mUseBitmapScaling = true;
             if (mUseBitmapScaling) {
                 o.inJustDecodeBounds = true;
                 stream = new FileInputStream(filename);
@@ -209,11 +208,11 @@ public final class UrlImageViewHelper {
     /**
      * Clear out cached images.
      *
-     * @param context
      * @param age     The max age of a file. Files older than this age
      *                will be removed.
+     * @param context
      */
-    private static void cleanup(final Context context, long age) {
+    public static void cleanup(final Context context) {
         if (mHasCleaned) {
             return;
         }
@@ -237,16 +236,6 @@ public final class UrlImageViewHelper {
         } catch (final Exception e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Clear out all cached images older than a week.
-     * The same as calling cleanup(context, CACHE_DURATION_ONE_WEEK);
-     *
-     * @param context
-     */
-    public static void cleanup(final Context context) {
-        cleanup(context, CACHE_DURATION_ONE_WEEK);
     }
 
     private static boolean checkCacheDuration(File file, long cacheDurationMs) {
@@ -337,7 +326,7 @@ public final class UrlImageViewHelper {
                 Drawable loaderResult = null;
                 if (drawable instanceof ZombieDrawable)
                     loaderResult = drawable;
-                callback.onLoaded(imageView, loaderResult, url, true);
+                callback.onLoaded(loaderResult);
             }
             return;
         }
@@ -368,7 +357,7 @@ public final class UrlImageViewHelper {
             return;
         }
 
-        final ArrayList<ImageView> downloads = new ArrayList<ImageView>();
+        final ArrayList<ImageView> downloads = new ArrayList<>();
         if (imageView != null) {
             downloads.add(imageView);
         }
@@ -418,7 +407,7 @@ public final class UrlImageViewHelper {
                 mPendingDownloads.remove(url);
 //                mLiveCache.put(url, usableResult);
                 if (callback != null && imageView == null)
-                    callback.onLoaded(null, loader.result, url, false);
+                    callback.onLoaded(loader.result);
                 int waitingCount = 0;
                 for (final ImageView iv : downloads) {
                     // validate the url it is waiting for
@@ -436,7 +425,7 @@ public final class UrlImageViewHelper {
                         // onLoaded is called with the loader's result (not what is actually used). null indicates failure.
                     }
                     if (callback != null && iv == imageView)
-                        callback.onLoaded(iv, loader.result, url, false);
+                        callback.onLoaded(loader.result);
                 }
                 clog("Populated: " + waitingCount);
             }
@@ -465,13 +454,13 @@ public final class UrlImageViewHelper {
                 } else {
                     clog("File cache has expired. Refreshing.");
                 }
-            } catch (final Exception ex) {
+            } catch (final Exception ignored) {
             }
         }
 
         for (UrlDownloader downloader : mDownloaders) {
             if (downloader.canDownloadUrl(url)) {
-                downloader.download(context, url, filename, loader, completion);
+                downloader.download(context, url, loader, completion);
                 return;
             }
         }
@@ -487,7 +476,7 @@ public final class UrlImageViewHelper {
     private static final ContentUrlDownloader mContentDownloader = new ContentUrlDownloader();
     private static final ContactContentUrlDownloader mContactDownloader = new ContactContentUrlDownloader();
     private static final FileUrlDownloader mFileDownloader = new FileUrlDownloader();
-    private static final ArrayList<UrlDownloader> mDownloaders = new ArrayList<UrlDownloader>();
+    private static final ArrayList<UrlDownloader> mDownloaders = new ArrayList<>();
 
     static {
         mDownloaders.add(mHttpDownloader);
@@ -496,14 +485,14 @@ public final class UrlImageViewHelper {
         mDownloaders.add(mFileDownloader);
     }
 
-    public static interface RequestPropertiesCallback {
-        public ArrayList<NameValuePair> getHeadersForRequest(Context context, String url);
+    public interface RequestPropertiesCallback {
+        ArrayList<NameValuePair> getHeadersForRequest(Context context, String url);
     }
 
     private static final UrlImageCache mLiveCache = UrlImageCache.getInstance();
 
     private static UrlLruCache mDeadCache;
-    private static final HashSet<BitmapDrawable> mAllCache = new HashSet<BitmapDrawable>();
+    private static final HashSet<BitmapDrawable> mAllCache = new HashSet<>();
 
     private static int getHeapSize(final Context context) {
         return ((ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE)).getMemoryClass() * 1024 * 1024;
@@ -556,6 +545,6 @@ public final class UrlImageViewHelper {
         task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     }
 
-    private static final Hashtable<ImageView, String> mPendingViews = new Hashtable<ImageView, String>();
-    private static final Hashtable<String, ArrayList<ImageView>> mPendingDownloads = new Hashtable<String, ArrayList<ImageView>>();
+    private static final Hashtable<ImageView, String> mPendingViews = new Hashtable<>();
+    private static final Hashtable<String, ArrayList<ImageView>> mPendingDownloads = new Hashtable<>();
 }

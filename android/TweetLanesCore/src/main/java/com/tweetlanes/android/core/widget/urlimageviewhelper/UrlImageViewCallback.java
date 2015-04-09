@@ -1,7 +1,6 @@
 package com.tweetlanes.android.core.widget.urlimageviewhelper;
 
 import android.graphics.drawable.Drawable;
-import android.widget.ImageView;
 
 /**
  * Callback that is invoked with a success/failure after attempting to
@@ -18,11 +17,9 @@ import android.widget.ImageView;
  */
 public interface UrlImageViewCallback {
     /**
-     * @param imageView       ImageView for the load request.
-     * @param loadedDrawable  The drawable that was loaded by the request.
-     *                        If the drawable failed to load, this will be null.
-     * @param url             The url that was loaded.
      * @param loadedFromCache This will indicate whether the load operation result came from cache, or was retrieved.
+     * @param loadedDrawable  The drawable that was loaded by the request.
+ *                        If the drawable failed to load, this will be null.
      */
-    void onLoaded(ImageView imageView, Drawable loadedDrawable, String url, boolean loadedFromCache);
+    void onLoaded(Drawable loadedDrawable);
 }

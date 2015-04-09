@@ -23,7 +23,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -65,25 +64,25 @@ abstract class ComposeBaseFragment extends Fragment {
 	 */
     public interface ComposeListener {
 
-        public void onShowCompose();
+        void onShowCompose();
 
-        public void onHideCompose();
+        void onHideCompose();
 
-        public void onMediaAttach();
+        void onMediaAttach();
 
-        public void onMediaDetach();
+        void onMediaDetach();
 
-        public void onBackButtonPressed();
+        void onBackButtonPressed();
 
-        public void onStatusUpdateRequest();
+        void onStatusUpdateRequest();
 
-        public void onStatusUpdateSuccess();
+        void onStatusUpdateSuccess();
 
-        public void onStatusHintUpdate();
+        void onStatusHintUpdate();
 
-        public void saveDraft(String draftAsJsonString);
+        void saveDraft(String draftAsJsonString);
 
-        public String getDraft();
+        String getDraft();
     }
 
     ImageButton mSendButton;
@@ -561,7 +560,7 @@ abstract class ComposeBaseFragment extends Fragment {
     };
 
     private ArrayList<TwitterUser> getAutoCompleteMentions(String text) {
-        ArrayList<TwitterUser> list = new ArrayList<TwitterUser>();
+        ArrayList<TwitterUser> list = new ArrayList<>();
         List<TwitterUser> users = TwitterManager.get().getFetchUserInstance().getCachedUsers();
 
         text = text.replace("@", "");
@@ -580,7 +579,7 @@ abstract class ComposeBaseFragment extends Fragment {
     }
 
     private ArrayList<String> getAutoCompleteHashtags(String text) {
-        ArrayList<String> list = new ArrayList<String>();
+        ArrayList<String> list = new ArrayList<>();
         List<String> hashtags = TwitterManager.get().getFetchStatusesInstance().getCachedHashtags();
 
         if (hashtags == null) {
@@ -667,7 +666,7 @@ abstract class ComposeBaseFragment extends Fragment {
         @Override
         public boolean canClearText() {
             if (mShowStartTime != null) {
-                long diff = new Date().getTime() - mShowStartTime.longValue();
+                long diff = new Date().getTime() - mShowStartTime;
                 if (diff < 500) {
                     return false;
                 }
@@ -686,7 +685,7 @@ abstract class ComposeBaseFragment extends Fragment {
         }
 
         @Override
-        public void onTouch(View v, MotionEvent event) {
+        public void onTouch() {
             if (!mHasFocus) {
                 showCompose();
                 setMediaPreviewVisibility();

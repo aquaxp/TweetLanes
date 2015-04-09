@@ -51,7 +51,7 @@ class LruCache<K, V> {
             throw new IllegalArgumentException("maxSize <= 0");
         }
         this.maxSize = maxSize;
-        this.map = new LinkedHashMap<K, V>(0, 0.75f, true);
+        this.map = new LinkedHashMap<>(0, 0.75f, true);
     }
 
     /**
@@ -82,7 +82,7 @@ class LruCache<K, V> {
          * the map and release the created value.
          */
 
-        V createdValue = create(key);
+        V createdValue = create();
         if (createdValue == null) {
             return null;
         }
@@ -100,7 +100,7 @@ class LruCache<K, V> {
         }
 
         if (mapValue != null) {
-            entryRemoved(false, key, createdValue, mapValue);
+            entryRemoved();
             return mapValue;
         } else {
             trimToSize(maxSize);
@@ -130,7 +130,7 @@ class LruCache<K, V> {
         }
 
         if (previous != null) {
-            entryRemoved(false, key, previous, value);
+            entryRemoved();
         }
 
         trimToSize(maxSize);
@@ -163,7 +163,7 @@ class LruCache<K, V> {
                 evictionCount++;
             }
 
-            entryRemoved(true, key, value, null);
+            entryRemoved();
         }
     }
 
@@ -186,7 +186,7 @@ class LruCache<K, V> {
         }
 
         if (previous != null) {
-            entryRemoved(false, key, previous, null);
+            entryRemoved();
         }
 
         return previous;
@@ -201,13 +201,11 @@ class LruCache<K, V> {
      * <p>The method is called without synchronization: other threads may
      * access the cache while this method is executing.
      *
-     * @param evicted  true if the entry is being removed to make space, false
-     *                 if the removal was caused by a {@link #put} or {@link #remove}.
      * @param newValue the new value for {@code key}, if it exists. If non-null,
      *                 this removal was caused by a {@link #put}. Otherwise it was caused by
      *                 an eviction or a {@link #remove}.
      */
-    void entryRemoved(boolean evicted, K key, V oldValue, V newValue) {
+    void entryRemoved() {
     }
 
     /**
@@ -225,12 +223,12 @@ class LruCache<K, V> {
      * thread calls {@link #put} while another is creating a value for the same
      * key.
      */
-    V create(K key) {
+    V create() {
         return null;
     }
 
     private int safeSizeOf(K key, V value) {
-        int result = sizeOf(key, value);
+        int result = sizeOf(value);
         if (result < 0) {
             throw new IllegalStateException("Negative size: " + key + "=" + value);
         }
@@ -244,7 +242,7 @@ class LruCache<K, V> {
      * <p/>
      * <p>An entry's size must not change while it is in the cache.
      */
-    int sizeOf(K key, V value) {
+    int sizeOf(V value) {
         return 1;
     }
 
@@ -289,7 +287,7 @@ class LruCache<K, V> {
     }
 
     /**
-     * Returns the number of times {@link #create(Object)} returned a value.
+     * Returns the number of times {@link #create()} returned a value.
      */
     public synchronized final int createCount() {
         return createCount;
@@ -314,7 +312,7 @@ class LruCache<K, V> {
      * recently accessed to most recently accessed.
      */
     public synchronized final Map<K, V> snapshot() {
-        return new LinkedHashMap<K, V>(map);
+        return new LinkedHashMap<>(map);
     }
 
     @Override

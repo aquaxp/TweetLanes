@@ -28,9 +28,9 @@ public class TwitterUser {
         mScreenName = user.getScreenName();
         mName = user.getName();
         mDescription = user.getDescription();
-        ArrayList<URLEntity> urlEntityArrayList = new ArrayList<URLEntity>();
+        ArrayList<URLEntity> urlEntityArrayList = new ArrayList<>();
         if (user.getDescriptionURLEntities() != null) {
-            urlEntityArrayList = new ArrayList<URLEntity>(Arrays.asList(user.getDescriptionURLEntities()));
+            urlEntityArrayList = new ArrayList<>(Arrays.asList(user.getDescriptionURLEntities()));
         }
 
         if (user.getURL() != null) {

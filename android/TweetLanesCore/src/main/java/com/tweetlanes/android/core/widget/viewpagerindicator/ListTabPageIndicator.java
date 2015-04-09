@@ -157,7 +157,7 @@ public class ListTabPageIndicator extends ListView implements PageIndicator {
     public void notifyDataSetChanged() {
         // removeAllViews();
 
-        ArrayList<String> names = new ArrayList<String>();
+        ArrayList<String> names = new ArrayList<>();
         TitleProvider adapter = (TitleProvider) mViewPager.getAdapter();
         final int count = ((PagerAdapter) adapter).getCount();
         for (int i = 0; i < count; i++) {

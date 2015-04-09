@@ -27,7 +27,7 @@ public class AutoResizeTextView extends TextView {
     // Interface for resize notifications
     public interface OnTextResizeListener {
 
-        public void onTextResize(TextView textView, float oldSize, float newSize);
+        void onTextResize(TextView textView, float oldSize, float newSize);
     }
 
     // Our ellipse string
@@ -46,17 +46,11 @@ public class AutoResizeTextView extends TextView {
     // Temporary upper bounds on the starting text size
     private float mMaxTextSize = 0;
 
-    // Lower bounds for text size
-    private float mMinTextSize = MIN_TEXT_SIZE;
-
     // Text view line spacing multiplier
     private float mSpacingMult = 1.0f;
 
     // Text view additional line spacing
     private float mSpacingAdd = 0.0f;
-
-    // Add ellipsis to text that overflows at the smallest text size
-    private boolean mAddEllipsis = true;
 
     // Default constructor override
     public AutoResizeTextView(Context context) {
@@ -189,6 +183,7 @@ public class AutoResizeTextView extends TextView {
 
         // Until we either fit within our text view or we had reached our min
         // text size, incrementally try smaller sizes
+        float mMinTextSize = MIN_TEXT_SIZE;
         while (textHeight > height && targetTextSize > mMinTextSize) {
             targetTextSize = Math.max(targetTextSize - 2, mMinTextSize);
             textHeight = getTextHeight(text, textPaint, width, targetTextSize);
@@ -196,6 +191,7 @@ public class AutoResizeTextView extends TextView {
 
         // If we had reached our minimum text size and still don't fit, append
         // an ellipsis
+        boolean mAddEllipsis = true;
         if (mAddEllipsis && targetTextSize == mMinTextSize
                 && textHeight > height) {
             // Draw using a static layout

@@ -90,7 +90,7 @@ public class TweetLanesExtension extends DashClockExtension {
     }
 
     private static ArrayList<AccountDescriptor> getAccounts(Context context) {
-        final ArrayList<AccountDescriptor> accounts = new ArrayList<AccountDescriptor>();
+        final ArrayList<AccountDescriptor> accounts = new ArrayList<>();
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         String accountIndices = preferences.getString(SharedPreferencesConstants.ACCOUNT_INDICES, null);

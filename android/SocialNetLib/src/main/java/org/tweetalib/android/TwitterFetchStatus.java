@@ -48,11 +48,11 @@ public class TwitterFetchStatus {
 	 */
     public interface FetchStatusWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
 
-        public AppdotnetApi getAppdotnetApi();
+        AppdotnetApi getAppdotnetApi();
 
-        public void addUser(User user);
+        void addUser(User user);
     }
 
     /*
@@ -60,7 +60,7 @@ public class TwitterFetchStatus {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(TwitterFetchResult result, TwitterStatus status);
+        void finished(TwitterFetchResult result, TwitterStatus status);
 
     }
 
@@ -82,7 +82,7 @@ public class TwitterFetchStatus {
 	 *
 	 */
     public TwitterFetchStatus() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mFetchStatusCallbackHandle = 0;
     }
 

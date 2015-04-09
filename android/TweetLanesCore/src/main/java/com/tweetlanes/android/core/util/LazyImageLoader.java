@@ -42,6 +42,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.WeakHashMap;
 import java.util.concurrent.ConcurrentHashMap;
@@ -74,13 +75,12 @@ public class LazyImageLoader {
     private final int mFallbackRes;
     private final int mRequiredWidth, mRequiredHeight;
     private final boolean mNoScale;
-    private final Context mContext;
     private Proxy mProxy;
 
     public LazyImageLoader(Context context, String cache_dir_name,
                            int fallback_image_res, int required_width, int required_height,
                            boolean noScale, int mem_cache_capacity) {
-        mContext = context;
+        Context mContext = context;
 
         mMemoryCache = new MemoryCache(mem_cache_capacity);
         mFileCache = new FileCache(mContext, cache_dir_name);
@@ -245,7 +245,7 @@ public class LazyImageLoader {
                 image.compress(Bitmap.CompressFormat.PNG, 100, fOut);
                 fOut.flush();
                 fOut.close();
-            } catch (IOException e) {
+            } catch (IOException ignored) {
 
             }
         }
@@ -255,7 +255,7 @@ public class LazyImageLoader {
             final File[] files = mCacheDir.listFiles(new FileFilter() {
                 @Override
                 public boolean accept(File file) {
-                    return file.getName() == getURLFilename(tag);
+                    return Objects.equals(file.getName(), getURLFilename(tag));
                 }
             });
             if (files == null) return;
@@ -281,7 +281,7 @@ public class LazyImageLoader {
                 if (lastModDate.before(cal.getTime())) {
                     boolean fileInCache = false;
                     for (URL url : urls) {
-                        if (f.getName() == getURLFilename(url)) {
+                        if (Objects.equals(f.getName(), getURLFilename(url))) {
                             fileInCache = true;
                         }
                     }
@@ -420,7 +420,7 @@ public class LazyImageLoader {
 
         public MemoryCache(int max_capacity) {
             mMaxCapacity = max_capacity;
-            mSoftCache = new ConcurrentHashMap<URL, SoftReference<ExpiringBitmap>>();
+            mSoftCache = new ConcurrentHashMap<>();
             mHardCache = new LinkedHashMap<URL, ExpiringBitmap>(mMaxCapacity / 3,
                     0.75f, true) {
 
@@ -433,7 +433,7 @@ public class LazyImageLoader {
                     // cache.
                     if (size() > mMaxCapacity) {
                         mSoftCache.put(eldest.getKey(),
-                                new SoftReference<ExpiringBitmap>(eldest.getValue()));
+                                new SoftReference<>(eldest.getValue()));
                         return true;
                     } else
                         return false;
@@ -442,13 +442,13 @@ public class LazyImageLoader {
         }
 
         public Set<URL> clear() {
-            Set<URL> clearedUrls = new HashSet<URL>();
+            Set<URL> clearedUrls = new HashSet<>();
 
             synchronized (mHardCache) {
 
                 Calendar cal = Calendar.getInstance();
                 cal.add(Calendar.DATE, -1);
-                Map<URL, ExpiringBitmap> copy = new HashMap<URL, ExpiringBitmap>(mHardCache);
+                Map<URL, ExpiringBitmap> copy = new HashMap<>(mHardCache);
                 for (URL url : copy.keySet()) {
 
                     ExpiringBitmap bitmap = mHardCache.get(url);
@@ -468,7 +468,7 @@ public class LazyImageLoader {
         }
 
         public Set<URL> getActiveUrls() {
-            return new HashSet<URL>(mHardCache.keySet());
+            return new HashSet<>(mHardCache.keySet());
         }
 
         public Bitmap get(final URL url, final FileCache fileCache) {
@@ -483,7 +483,7 @@ public class LazyImageLoader {
                         try {
                             mHardCache.remove(url);
                             mHardCache.put(url, bitmap);
-                        } catch (Exception e) {
+                        } catch (Exception ignored) {
 
                         }
                         return bitmap.image;

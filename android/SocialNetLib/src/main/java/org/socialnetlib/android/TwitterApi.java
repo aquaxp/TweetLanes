@@ -56,10 +56,7 @@ public class TwitterApi extends SocialNetApi {
             Twitter twitter = getAndConfigureApiInstance();
             twitterUser = new TwitterUser(twitter.verifyCredentials());
 
-        } catch (IllegalStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (TwitterException e) {
+        } catch (IllegalStateException | TwitterException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

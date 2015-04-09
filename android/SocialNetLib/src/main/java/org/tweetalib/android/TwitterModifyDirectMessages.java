@@ -49,7 +49,7 @@ public class TwitterModifyDirectMessages {
 	 */
     public interface ModifyDirectMessagesWorkerCallbacks {
 
-        public Twitter getTwitterInstance();
+        Twitter getTwitterInstance();
     }
 
     /*
@@ -57,7 +57,7 @@ public class TwitterModifyDirectMessages {
 	 */
     public interface FinishedCallbackInterface {
 
-        public void finished(boolean successful, Integer value);
+        void finished(boolean successful);
 
     }
 
@@ -79,7 +79,7 @@ public class TwitterModifyDirectMessages {
      *
 	 */
     public TwitterModifyDirectMessages() {
-        mFinishedCallbackMap = new HashMap<Integer, FinishedCallback>();
+        mFinishedCallbackMap = new HashMap<>();
         mModifyDirectMessagesCallbackHandle = 0;
     }
 
@@ -227,7 +227,7 @@ public class TwitterModifyDirectMessages {
 
             FinishedCallback callback = getModifyDirectMessagesCallback(output.mCallbackHandle);
             if (callback != null) {
-                callback.finished(output.mResult.mErrorMessage == null, output.mValue);
+                callback.finished(output.mResult.mErrorMessage == null);
                 removeModifyDirectMessagesCallback(callback);
             }
 

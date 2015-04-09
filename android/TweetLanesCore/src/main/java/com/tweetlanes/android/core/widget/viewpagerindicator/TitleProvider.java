@@ -21,5 +21,5 @@ public interface TitleProvider {
      * @param position
      * @return
      */
-    public String getTitle(int position);
+    String getTitle(int position);
 }

@@ -22,11 +22,11 @@ public class AdnPosts {
     public ArrayList<AdnPost> mPosts;
 
     public AdnPosts() {
-        mPosts = new ArrayList<AdnPost>();
+        mPosts = new ArrayList<>();
     }
 
     public AdnPosts(JSONArray jsonArray) {
-        mPosts = new ArrayList<AdnPost>();
+        mPosts = new ArrayList<>();
 
         try {
             for (int i = 0; i < jsonArray.length(); i++) {
@@ -48,7 +48,7 @@ public class AdnPosts {
     }
 
     public AdnPosts(String jsonAsString) {
-        mPosts = new ArrayList<AdnPost>();
+        mPosts = new ArrayList<>();
 
         try {
             JSONArray jsonArray = new JSONObject(jsonAsString)

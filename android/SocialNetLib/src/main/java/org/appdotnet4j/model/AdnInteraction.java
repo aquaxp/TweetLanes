@@ -44,12 +44,16 @@ class AdnInteraction {
                 mPosts = new AdnPosts(object.getJSONArray("objects"));
                 if (mPosts != null && mPosts.mPosts != null) {
                     String verb = "somethinged";
-                    if (mAction.equals("repost")) {
-                        verb = "reposted";
-                    } else if (mAction.equals("star")) {
-                        verb = "starred";
-                    } else if (mAction.equals("reply")) {
-                        verb = "replied to";
+                    switch (mAction) {
+                        case "repost":
+                            verb = "reposted";
+                            break;
+                        case "star":
+                            verb = "starred";
+                            break;
+                        case "reply":
+                            verb = "replied to";
+                            break;
                     }
                     for (AdnPost post : mPosts.mPosts) {
                         String userString = "";
@@ -87,9 +91,7 @@ class AdnInteraction {
                 meta.mSource = "App.net";
                 mPosts.mPosts.add(meta);
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
+        } catch (JSONException | ParseException e) {
             e.printStackTrace();
         }
     }

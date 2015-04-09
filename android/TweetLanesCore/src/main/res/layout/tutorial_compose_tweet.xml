@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/tutorial_compose_tweet_footer"
                 android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textSize="14dp"/>
+                android:textSize="14sp"/>
 
     </LinearLayout>
 </ScrollView>

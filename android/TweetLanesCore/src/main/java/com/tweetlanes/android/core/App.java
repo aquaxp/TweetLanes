@@ -495,7 +495,7 @@ public class App extends Application {
         mPreferences.edit().putInt(SharedPreferencesConstants.VERSION,
                 Constant.SHARED_PREFERENCES_VERSION);
 
-        mAccounts = new ArrayList<AccountDescriptor>();
+        mAccounts = new ArrayList<>();
         updateTwitterAccountCount();
 
         SocialNetConstant.Type socialNetType = SocialNetConstant.Type.Twitter;
@@ -529,7 +529,7 @@ public class App extends Application {
     }
 
     private void setLaneDefinitions(SocialNetConstant.Type socialNetType) {
-        mProfileLaneDefinitions = new ArrayList<LaneDescriptor>();
+        mProfileLaneDefinitions = new ArrayList<>();
         mProfileLaneDefinitions
                 .add(new LaneDescriptor(Constant.LaneType.PROFILE_PROFILE,
                         this.getString(R.string.lane_profile_profile),
@@ -553,7 +553,7 @@ public class App extends Application {
                 new TwitterContentHandleBase(
                         TwitterConstant.ContentType.STATUSES,
                         TwitterConstant.StatusesType.USER_FAVORITES)));
-        mSearchLaneDefinitions = new ArrayList<LaneDescriptor>();
+        mSearchLaneDefinitions = new ArrayList<>();
 
         mSearchLaneDefinitions.add(new LaneDescriptor(
                 Constant.LaneType.SEARCH_TERM, getString(
@@ -571,7 +571,7 @@ public class App extends Application {
                             TwitterConstant.UsersType.PEOPLE_SEARCH)));
         }
 
-        mTweetSpotlightLaneDefinitions = new ArrayList<LaneDescriptor>();
+        mTweetSpotlightLaneDefinitions = new ArrayList<>();
         mTweetSpotlightLaneDefinitions.add(new LaneDescriptor(
                 Constant.LaneType.STATUS_SPOTLIGHT, getString(
                 socialNetType == SocialNetConstant.Type.Twitter ? R.string.lane_tweet_status : R.string
@@ -661,7 +661,7 @@ public class App extends Application {
 	 */
     public void triggerFollowPromoAccounts(
             TwitterFetchUsers.FinishedCallback callback) {
-        ArrayList<Long> userIds = new ArrayList<Long>();
+        ArrayList<Long> userIds = new ArrayList<>();
         userIds.add(Constant.USER_ID_CHRISMLACY);
         userIds.add(Constant.USER_ID_TWEETLANES);
         TwitterManager.get().updateFriendshipUserIds(

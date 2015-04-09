@@ -118,7 +118,7 @@ public abstract class BaseLaneFragment extends Fragment {
 	 */
     public interface ConfigureBundleListener {
 
-        public void addValues(Bundle args);
+        void addValues(Bundle args);
     }
 
     /*
