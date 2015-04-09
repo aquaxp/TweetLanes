@@ -24,11 +24,11 @@
         </menu>
     </item>
 
-    <item
-            android:id="@+id/action_buy_alp"
-            android:title="@string/action_bar_buy_alp"
-            android:showAsAction="never"
-            />
+    <!--<item-->
+            <!--android:id="@+id/action_buy_alp"-->
+            <!--android:title="@string/action_bar_buy_alp"-->
+            <!--android:showAsAction="never"-->
+            <!--/>-->
 
     <!-- 
     <item android:id="@+id/action_promote"

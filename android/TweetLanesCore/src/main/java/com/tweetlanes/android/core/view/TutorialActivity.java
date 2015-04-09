@@ -28,10 +28,7 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import com.crittercism.app.Crittercism;
 import com.tweetlanes.android.core.App;
-import com.tweetlanes.android.core.Constant;
-import com.tweetlanes.android.core.ConsumerKeyConstants;
 import com.tweetlanes.android.core.R;
 import com.tweetlanes.android.core.widget.viewpagerindicator.UnderlinePageIndicator;
 
@@ -39,7 +36,7 @@ public class TutorialActivity extends FragmentActivity {
 
     private ViewPager mViewPager;
     private TutorialLaneAdapter mLaneAdapter;
-    private boolean mDoFollow = true;
+    private boolean mDoFollow = false;
 
     private static final int PAGE_WELCOME = 0;
     private static final int PAGE_COMPOSE_TWEET = 1;
@@ -64,11 +61,6 @@ public class TutorialActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (Constant.ENABLE_CRASH_TRACKING) {
-            Crittercism.initialize(getApplicationContext(),
-                    ConsumerKeyConstants.CRITTERCISM_APP_ID);
-        }
 
         // Key the screen from dimming -
         // http://stackoverflow.com/a/4197370/328679

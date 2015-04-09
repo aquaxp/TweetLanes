@@ -330,7 +330,6 @@ public class HomeActivity extends BaseLaneActivity {
                     Constant.REFRESH_LISTS_WAIT_TIME);
         }
         app.clearImageCaches();
-        app.setCrittersismMetaData();
     }
 
     /*
@@ -527,12 +526,6 @@ public class HomeActivity extends BaseLaneActivity {
         int i = item.getItemId();
         if (i == R.id.action_settings) {
             showUserPreferences();
-
-        } else if (i == R.id.action_buy_alp) {
-            Intent browserIntent = new Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=com.chrislacy.actionlauncher.pro"));
-            startActivity(browserIntent);
 
         } else {
             return false;

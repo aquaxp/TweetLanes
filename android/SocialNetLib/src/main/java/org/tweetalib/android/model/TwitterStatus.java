@@ -494,6 +494,7 @@ public class TwitterStatus implements Comparable<TwitterStatus> {
     public String mUserName;
     public String[] mUserMentions;
     public TwitterMediaEntity mMediaEntity;
+    public TwitterMediaEntity[] mMediaEntityList;
     public AdnMedia mAdnMedia;
 
     public String getAuthorName() {

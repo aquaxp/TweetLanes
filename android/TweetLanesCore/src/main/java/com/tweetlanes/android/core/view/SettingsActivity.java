@@ -42,13 +42,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.crittercism.app.Crittercism;
 import com.inscription.ChangeLogDialog;
 import com.tweetlanes.android.core.App;
 import com.tweetlanes.android.core.AppSettings;
-import com.tweetlanes.android.core.Constant;
 import com.tweetlanes.android.core.Constant.LaneType;
-import com.tweetlanes.android.core.ConsumerKeyConstants;
 import com.tweetlanes.android.core.Notifier;
 import com.tweetlanes.android.core.R;
 import com.tweetlanes.android.core.model.AccountDescriptor;
@@ -123,11 +120,6 @@ public class SettingsActivity extends PreferenceActivity implements
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        if (Constant.ENABLE_CRASH_TRACKING) {
-            Crittercism.initialize(getApplicationContext(),
-                    ConsumerKeyConstants.CRITTERCISM_APP_ID);
-        }
 
         setTheme(AppSettings.get().getCurrentThemeStyle());
 

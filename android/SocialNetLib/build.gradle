@@ -4,12 +4,12 @@ android {
    compileSdkVersion 21
    buildToolsVersion '21.1.0'
    defaultConfig {
-      minSdkVersion 14
-      targetSdkVersion 17
+      minSdkVersion 21
+      targetSdkVersion 21
    }
    buildTypes {
       release {
-         runProguard false
+         minifyEnabled false
          proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
       }
    }

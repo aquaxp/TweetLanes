@@ -46,12 +46,10 @@ import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.crittercism.app.Crittercism;
 import com.tweetlanes.android.core.App;
 import com.tweetlanes.android.core.AppSettings;
 import com.tweetlanes.android.core.Constant;
 import com.tweetlanes.android.core.Constant.SystemEvent;
-import com.tweetlanes.android.core.ConsumerKeyConstants;
 import com.tweetlanes.android.core.R;
 import com.tweetlanes.android.core.model.AccountDescriptor;
 import com.tweetlanes.android.core.model.ComposeTweetDefault;
@@ -110,11 +108,6 @@ class BaseLaneActivity extends FragmentActivity implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        if (Constant.ENABLE_CRASH_TRACKING) {
-            Crittercism.initialize(getApplicationContext(),
-                    ConsumerKeyConstants.CRITTERCISM_APP_ID);
-        }
 
         PagerAdapter pagerAdapter = getAdapterForViewPager();
         if (pagerAdapter != null) {
@@ -1162,13 +1155,6 @@ class BaseLaneActivity extends FragmentActivity implements
                 }
             } else {
                 inflater.inflate(defaultOptionsMenu.intValue(), menu);
-            }
-
-            if (menu != null && App.getActionLauncherInstalled()) {
-                MenuItem buyALP = menu.findItem(R.id.action_buy_alp);
-                if (buyALP != null) {
-                    buyALP.setVisible(false);
-                }
             }
 
             configureActionBarSearchView(menu);

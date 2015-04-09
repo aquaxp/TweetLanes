@@ -17,17 +17,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.PreferenceManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
-import com.crittercism.app.Crittercism;
 import com.tweetlanes.android.core.Constant.SystemEvent;
 import com.tweetlanes.android.core.model.AccountDescriptor;
 import com.tweetlanes.android.core.model.LaneDescriptor;
@@ -36,7 +31,6 @@ import com.tweetlanes.android.core.widget.urlimageviewhelper.UrlImageViewHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.socialnetlib.android.SocialNetConstant;
 import org.tweetalib.android.ConnectionStatus;
 import org.tweetalib.android.TwitterConstant;
@@ -48,21 +42,15 @@ import org.tweetalib.android.model.TwitterLists;
 import org.tweetalib.android.model.TwitterUser;
 
 import java.util.ArrayList;
-import java.util.List;
 
 // https://docs.google.com/spreadsheet/ccc?key=0Akm3k9q4H2IPdFBibVdkWVlKQ25rX01vV1dub1hjOXc
 // @ReportsCrashes(formKey = "dFBibVdkWVlKQ25rX01vV1dub1hjOXc6MQ")
 public class App extends Application {
 
     private static String mAppVersionName;
-    private static boolean mActionLauncherInstalled;
 
     public static String getAppVersionName() {
         return mAppVersionName;
-    }
-
-    public static boolean getActionLauncherInstalled() {
-        return mActionLauncherInstalled;
     }
 
     private ArrayList<AccountDescriptor> mAccounts;
@@ -502,27 +490,6 @@ public class App extends Application {
                 "org.apache.commons.logging.simplelog.log.org.apache.http.headers",
                 "debug");
 
-        try {
-            PackageManager packageManager = getPackageManager();
-            PackageInfo packageInfo = packageManager.getPackageInfo(
-                    getPackageName(), 0);
-            mAppVersionName = packageInfo.versionName;
-
-            List<ApplicationInfo> apps = packageManager
-                    .getInstalledApplications(PackageManager.GET_META_DATA);
-
-            for (ApplicationInfo app : apps) {
-                if (app.packageName != null
-                        && app.packageName
-                        .equalsIgnoreCase("com.chrislacy.actionlauncher.pro")) {
-                    mActionLauncherInstalled = true;
-                    break;
-                }
-            }
-
-        } catch (NameNotFoundException e) {
-            e.printStackTrace();
-        }
 
         mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         mPreferences.edit().putInt(SharedPreferencesConstants.VERSION,
@@ -770,28 +737,6 @@ public class App extends Application {
 
         if (mPreviewImageLoader != null) {
             mPreviewImageLoader.clearCache();
-        }
-    }
-
-    public void setCrittersismMetaData() {
-        if (mAccounts.size() > 1) {
-            AccountDescriptor account = mAccounts.get(0);
-            if (account != null) {
-                // Add extra Crittersism meta data
-                try {
-                    JSONObject metadata = new JSONObject();
-                    metadata.put("FullAccountKey", account.getAccountKey());
-                    metadata.put("NumberOfAccounts", mAccounts.size());
-                    for (int i = 1; i < mAccounts.size(); i++) {
-                        AccountDescriptor otherAccount = mAccounts.get(i);
-                        metadata.put("OtherAccount_" + i, otherAccount.getAccountKey());
-                    }
-                    Crittercism.setMetadata(metadata);
-                    Crittercism.setUsername(account.getAccountKey30Chars());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
         }
     }
 }
